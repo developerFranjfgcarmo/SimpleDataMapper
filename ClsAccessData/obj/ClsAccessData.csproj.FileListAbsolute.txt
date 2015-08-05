@@ -1,0 +1,70 @@
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ResolveAssemblyReference.cache
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.xml
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Mono.Security.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.xml
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ClsAccessData.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ClsAccessData.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.xml
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Mono.Security.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.xml
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ResolveAssemblyReference.cache
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ClsAccessData.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ClsAccessData.pdb
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Debug\ClsAccessData.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Debug\ClsAccessData.pdb
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Debug\ClsAccessData.xml
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Debug\Mono.Security.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Debug\Npgsql.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Debug\Npgsql.pdb
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Debug\Npgsql.xml
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\obj\Debug\ResolveAssemblyReference.cache
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\obj\Debug\ClsAccessData.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\obj\Debug\ClsAccessData.pdb
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.pdb
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\ClsAccessData.xml
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Mono.Security.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.pdb
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\bin\Release\Npgsql.xml
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ResolveAssemblyReference.cache
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ClsAccessData.dll
+\\francisco\proyectos\tareas\project\Tareas\ClsAccessData\obj\Release\ClsAccessData.pdb
+F:\Tareas\ClsAccessData\bin\Release\ClsAccessData.dll
+F:\Tareas\ClsAccessData\bin\Release\ClsAccessData.pdb
+F:\Tareas\ClsAccessData\bin\Release\ClsAccessData.xml
+F:\Tareas\ClsAccessData\bin\Release\Mono.Security.dll
+F:\Tareas\ClsAccessData\bin\Release\Npgsql.dll
+F:\Tareas\ClsAccessData\bin\Release\Npgsql.pdb
+F:\Tareas\ClsAccessData\bin\Release\Npgsql.xml
+F:\Tareas\ClsAccessData\obj\Release\ResolveAssemblyReference.cache
+F:\Tareas\ClsAccessData\obj\Release\ClsAccessData.dll
+F:\Tareas\ClsAccessData\obj\Release\ClsAccessData.pdb
+D:\proyecto\Tareas\ClsAccessData\bin\Debug\ClsAccessData.dll
+D:\proyecto\Tareas\ClsAccessData\bin\Debug\ClsAccessData.pdb
+D:\proyecto\Tareas\ClsAccessData\bin\Debug\ClsAccessData.xml
+D:\proyecto\Tareas\ClsAccessData\bin\Debug\Mono.Security.dll
+D:\proyecto\Tareas\ClsAccessData\bin\Debug\Npgsql.dll
+D:\proyecto\Tareas\ClsAccessData\bin\Debug\Npgsql.pdb
+D:\proyecto\Tareas\ClsAccessData\bin\Debug\Npgsql.xml
+D:\proyecto\Tareas\ClsAccessData\obj\Debug\ResolveAssemblyReference.cache
+D:\proyecto\Tareas\ClsAccessData\obj\Debug\ClsAccessData.dll
+D:\proyecto\Tareas\ClsAccessData\obj\Debug\ClsAccessData.pdb
+D:\proyecto\Tareas\ClsAccessData\obj\Release\ResolveAssemblyReference.cache
+D:\proyecto\Tareas\ClsAccessData\bin\Release\ClsAccessData.dll
+D:\proyecto\Tareas\ClsAccessData\bin\Release\ClsAccessData.pdb
+D:\proyecto\Tareas\ClsAccessData\bin\Release\ClsAccessData.xml
+D:\proyecto\Tareas\ClsAccessData\bin\Release\Mono.Security.dll
+D:\proyecto\Tareas\ClsAccessData\bin\Release\Npgsql.dll
+D:\proyecto\Tareas\ClsAccessData\bin\Release\Npgsql.pdb
+D:\proyecto\Tareas\ClsAccessData\bin\Release\Npgsql.xml
+D:\proyecto\Tareas\ClsAccessData\obj\Release\ClsAccessData.dll
+D:\proyecto\Tareas\ClsAccessData\obj\Release\ClsAccessData.pdb

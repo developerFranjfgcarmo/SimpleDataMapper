@@ -1,0 +1,164 @@
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\ResolveAssemblyReference.cache
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Tareas.exe
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Tareas.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Mono.Security.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.xml
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.exe
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.Properties.Resources.resources
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\ResolveAssemblyReference.cache
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.Properties.Resources.resources
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.csproj.GenerateResource.Cache
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Tareas.exe
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Tareas.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Mono.Security.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.xml
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.xml
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.exe
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.pdb
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.xml
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.dll
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.FrmAcceso.resources
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.FrmAcceso.resources
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.Form1.resources
+C:\datos\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.Form1.resources
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.exe
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Tareas.exe
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Tareas.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Mono.Security.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.xml
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.xml
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\ResolveAssemblyReference.cache
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.Form1.resources
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.FrmAcceso.resources
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.Properties.Resources.resources
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Tareas.exe
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Tareas.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Mono.Security.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.dll
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.xml
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.pdb
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.xml
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\ResolveAssemblyReference.cache
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.Form1.resources
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.FrmAcceso.resources
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.Properties.Resources.resources
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.csproj.GenerateResource.Cache
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.exe
+E:\disco datos\cosas fran\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.exe
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Tareas.exe
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Tareas.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.dll
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Mono.Security.dll
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.dll
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\Npgsql.xml
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Debug\ClsAccessData.xml
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Debug\ResolveAssemblyReference.cache
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.Form1.resources
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.FrmAcceso.resources
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.Properties.Resources.resources
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\Tareas.exe
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\Tareas.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.dll
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\Mono.Security.dll
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.dll
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\Npgsql.xml
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.pdb
+\\francisco\proyectos\tareas\project\Tareas\Tareas\bin\Release\ClsAccessData.xml
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Release\ResolveAssemblyReference.cache
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.Form1.resources
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.FrmAcceso.resources
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.Properties.Resources.resources
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.csproj.GenerateResource.Cache
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.exe
+\\francisco\proyectos\tareas\project\Tareas\Tareas\obj\Release\Tareas.pdb
+F:\Tareas\Tareas\obj\Debug\Tareas.exe
+F:\Tareas\Tareas\obj\Debug\Tareas.pdb
+F:\Tareas\Tareas\bin\Debug\Tareas.exe
+F:\Tareas\Tareas\bin\Debug\Tareas.pdb
+F:\Tareas\Tareas\bin\Debug\ClsAccessData.dll
+F:\Tareas\Tareas\bin\Debug\Mono.Security.dll
+F:\Tareas\Tareas\bin\Debug\Npgsql.dll
+F:\Tareas\Tareas\bin\Debug\Npgsql.pdb
+F:\Tareas\Tareas\bin\Debug\Npgsql.xml
+F:\Tareas\Tareas\bin\Debug\ClsAccessData.pdb
+F:\Tareas\Tareas\bin\Debug\ClsAccessData.xml
+F:\Tareas\Tareas\obj\Debug\ResolveAssemblyReference.cache
+F:\Tareas\Tareas\obj\Debug\Tareas.Form1.resources
+F:\Tareas\Tareas\obj\Debug\Tareas.FrmAcceso.resources
+F:\Tareas\Tareas\obj\Debug\Tareas.Properties.Resources.resources
+F:\Tareas\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
+F:\Tareas\Tareas\bin\Release\Tareas.exe
+F:\Tareas\Tareas\bin\Release\Tareas.pdb
+F:\Tareas\Tareas\bin\Release\ClsAccessData.dll
+F:\Tareas\Tareas\bin\Release\Mono.Security.dll
+F:\Tareas\Tareas\bin\Release\Npgsql.dll
+F:\Tareas\Tareas\bin\Release\Npgsql.pdb
+F:\Tareas\Tareas\bin\Release\Npgsql.xml
+F:\Tareas\Tareas\bin\Release\ClsAccessData.pdb
+F:\Tareas\Tareas\bin\Release\ClsAccessData.xml
+F:\Tareas\Tareas\obj\Release\ResolveAssemblyReference.cache
+F:\Tareas\Tareas\obj\Release\Tareas.Form1.resources
+F:\Tareas\Tareas\obj\Release\Tareas.FrmAcceso.resources
+F:\Tareas\Tareas\obj\Release\Tareas.Properties.Resources.resources
+F:\Tareas\Tareas\obj\Release\Tareas.csproj.GenerateResource.Cache
+F:\Tareas\Tareas\obj\Release\Tareas.exe
+F:\Tareas\Tareas\obj\Release\Tareas.pdb
+F:\proyecto\Tareas\Tareas\obj\Debug\Tareas.exe
+F:\proyecto\Tareas\Tareas\obj\Debug\Tareas.pdb
+D:\proyecto\Tareas\Tareas\obj\Debug\Tareas.exe
+D:\proyecto\Tareas\Tareas\obj\Debug\Tareas.pdb
+D:\proyecto\Tareas\Tareas\bin\Debug\Tareas.exe
+D:\proyecto\Tareas\Tareas\bin\Debug\Tareas.pdb
+D:\proyecto\Tareas\Tareas\bin\Debug\Mono.Security.dll
+D:\proyecto\Tareas\Tareas\bin\Debug\Npgsql.dll
+D:\proyecto\Tareas\Tareas\bin\Debug\Npgsql.pdb
+D:\proyecto\Tareas\Tareas\bin\Debug\Npgsql.xml
+D:\proyecto\Tareas\Tareas\bin\Debug\ClsAccessData.pdb
+D:\proyecto\Tareas\Tareas\bin\Debug\ClsAccessData.xml
+D:\proyecto\Tareas\Tareas\obj\Debug\ResolveAssemblyReference.cache
+D:\proyecto\Tareas\Tareas\obj\Debug\Tareas.Form1.resources
+D:\proyecto\Tareas\Tareas\obj\Debug\Tareas.FrmAcceso.resources
+D:\proyecto\Tareas\Tareas\obj\Debug\Tareas.Properties.Resources.resources
+D:\proyecto\Tareas\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
+D:\proyecto\Tareas\Tareas\obj\Debug\Tareas.Forms.MdiPrincipal.resources
+D:\proyecto\Tareas\Tareas\obj\Release\ResolveAssemblyReference.cache
+D:\proyecto\Tareas\Tareas\obj\Release\Tareas.Form1.resources
+D:\proyecto\Tareas\Tareas\obj\Release\Tareas.FrmAcceso.resources
+D:\proyecto\Tareas\Tareas\obj\Release\Tareas.Forms.MdiPrincipal.resources
+D:\proyecto\Tareas\Tareas\obj\Release\Tareas.Properties.Resources.resources
+D:\proyecto\Tareas\Tareas\obj\Release\Tareas.csproj.GenerateResource.Cache
+D:\proyecto\Tareas\Tareas\bin\Release\Tareas.exe
+D:\proyecto\Tareas\Tareas\bin\Release\Tareas.pdb
+D:\proyecto\Tareas\Tareas\bin\Release\ClsAccessData.dll
+D:\proyecto\Tareas\Tareas\bin\Release\Mono.Security.dll
+D:\proyecto\Tareas\Tareas\bin\Release\Npgsql.dll
+D:\proyecto\Tareas\Tareas\bin\Release\ClsAccessData.pdb
+D:\proyecto\Tareas\Tareas\bin\Release\ClsAccessData.xml
+D:\proyecto\Tareas\Tareas\bin\Release\Npgsql.pdb
+D:\proyecto\Tareas\Tareas\bin\Release\Npgsql.xml
+D:\proyecto\Tareas\Tareas\obj\Release\Tareas.exe
+D:\proyecto\Tareas\Tareas\obj\Release\Tareas.pdb
+D:\proyecto\Tareas\Tareas\bin\Debug\ClsAccessData.dll

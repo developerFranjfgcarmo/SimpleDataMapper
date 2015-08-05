@@ -1,0 +1,26 @@
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\ClsAccessData.dll
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\ClsAccessData.pdb
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\ClsAccessData.xml
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\Mono.Security.dll
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\Npgsql.dll
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\Npgsql.resources.dll
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\policy.2.0.Npgsql.dll
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\Npgsql.pdb
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\Npgsql.xml
+E:\proyecto\Tareas\ClsAccessData\bin\Debug\policy.2.0.Npgsql.config
+E:\proyecto\Tareas\ClsAccessData\obj\Debug\ResolveAssemblyReference.cache
+E:\proyecto\Tareas\ClsAccessData\obj\Debug\ClsAccessData.dll
+E:\proyecto\Tareas\ClsAccessData\obj\Debug\ClsAccessData.pdb
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\ClsAccessData.dll
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\ClsAccessData.pdb
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\ClsAccessData.xml
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\Mono.Security.dll
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\Npgsql.dll
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\Npgsql.resources.dll
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\policy.2.0.Npgsql.dll
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\Npgsql.pdb
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\Npgsql.xml
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\policy.2.0.Npgsql.config
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\obj\Debug\ClsAccessData.csprojResolveAssemblyReference.cache
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\obj\Debug\ClsAccessData.dll
+F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\obj\Debug\ClsAccessData.pdb

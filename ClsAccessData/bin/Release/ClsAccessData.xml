@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ClsAccessData</name>
+    </assembly>
+    <members>
+        <member name="T:ClsAccessData.ClsConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsConnection.oMiDataAdapter">
+            <summary>
+            Representa un conjunto de comandos de datos y una conexión de base de 
+            datos que se utilizan para rellenar un DataSet 
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsConnection.sServidorDB">
+            <summary>
+            Datos miembros para la conexión a la base datos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsConnection.sBD">
+            <summary>
+            Datos miembros para la conexión a la base datos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsConnection.sUsuarioBD">
+            <summary>
+            Datos miembros para la conexión a la base datos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsConnection.sContrenaBD">
+            <summary>
+            Datos miembros para la conexión a la base datos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsConnection.oTransaccion">
+            <summary>
+            Representa una transacción de Transact-SQL que se realiza en una be de datos de SQL Server
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsConnection.oConnection">
+            <summary>
+            Instancia de tipo SqlConnection que se conecta a la be de datos
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Método constructor de la clase conexión
+            </summary>
+            <param name="sServidorDB">Servidor de la base datos.</param>
+            <param name="sBD">Catálogo de la base datos.</param>
+            <param name="sUsuarioBD">Usuario de la base datos.</param>
+            <param name="sContrenaBD">Contraseña de la base de datos.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.DBOpen">
+            <summary>
+            Abre la conexión a la base datos.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.DBClose">
+            <summary>
+            Cierra la conexión a la base datos.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.DBBeginTransaction">
+            <summary>
+            Comienza una transacción a la base datos.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.BDCommit">
+            <summary>
+            Confirma la transacción actual a la base datos.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.BDRollBack">
+            <summary>
+            Cancela la transacción actual a la base datos.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.DBExecute(System.String)">
+            <summary>
+            Executa la transacción actual.
+            </summary>
+            <param name="sSql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsConnection.InitDataAdapter(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ClsAccessData.ClsConnection.SServidorDB">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ClsAccessData.ClsConnection.SContrenaBD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ClsAccessData.ClsConnection.SBD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ClsAccessData.ClsConnection.SUsuarioBD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ClsAccessData.ClsConnection.DBTransaccion">
+            <summary>
+            Obtiene el objeto oTransaccion.
+            </summary>
+        </member>
+        <member name="P:ClsAccessData.ClsConnection.DBConnection">
+            <summary>
+            Obtiene el objeto oConnection.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsDisposable.Dispose">
+            <summary>
+            Método de IDisposable para desechar la clase.
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:ClsAccessData.ClsDisposable.Dispose(System.Boolean)" -->
+        <member name="M:ClsAccessData.ClsDisposable.Finalize">
+            <summary>
+            Destructor de clase.
+            En caso de que se nos olvide “desechar” la clase,
+            el GC llamará al destructor, que tambén ejecuta la lógica
+            anterior para liberar los recursos.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsGeneral.IsNumeric(System.Object)">
+            <summary>
+            Devuelve un valor boolean que indica si la expresión de puede evaluar como número
+            </summary>
+            <param name="Expression">Parametro necesario, tipo Object</param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsGeneral.IsDate(System.Object)">
+            <summary>
+            Devuelve un valor boolean que indica si la expresión de puede evaluar como número
+            </summary>
+            <param name="Expression">Parametro necesario, tipo Object </param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsGeneral.NoNull(System.Object)">
+            <summary>
+            Función que comprueba si un valor es nulo, en cuyo caso devuelve una 
+            cadena vacía ("").
+            </summary>
+            <param name="Valor">
+            Valor que se va a evaluar.
+            </param>
+            <returns>
+            Devuelve el mismo valor o una cadena vacía("") si el valor es nulo.
+            </returns>
+        </member>
+        <member name="T:ClsAccessData.ClsStructure">
+            <summary>
+            adfsdf
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.NAME_TABLE">
+            <summary>
+            Nombre de la variable que contiene el nombre de la tabla a realizar la transacción.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.sTableName">
+            <summary>
+            Nombre de la tabla actual de trabajo.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.oKeysColumns">
+            <summary>
+            Contiene la coleción de columnas claves y su correspondiente valor.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.oSchemaStruct">
+            <summary>
+            Contiene la estrutura de una tabla o de todas las tablas de la base datos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.oColumns">
+            <summary>
+            Collección de Columnas de la tabla actual
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.oCon">
+            <summary>
+            Almacena la conexión a la base datos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.sPrimaryKeys">
+            <summary>
+            Almacena las Primary Keys de la tabla.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.#ctor(ClsAccessData.ClsConnection)">
+            <summary>
+            Constructor de la clase.
+            </summary>
+            <param name="oCon">Conexión de la base datos.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.#ctor(ClsAccessData.ClsConnection,System.String)">
+            <summary>
+            Constructor de la clase.
+            </summary>
+            <param name="oCon">Conexión de la base datos.</param>
+            <param name="sNameTable">Nombre de la tabla para obtener el esquema.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.LoadSchema">
+            <summary>
+            Carga el esquema de la base de datos.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.LoadSchema(System.String)">
+            <summary>
+            Carga el esquema de una tabla de la base de datos.
+            </summary>
+            <param name="sNameTable"></param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.LoadTable(System.String)">
+            <summary>
+            Carga la estructura de una tabla.
+            </summary>
+            <param name="sNombreTable">Nombre de la tabla.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.GetPrimaryKey(System.String)">
+            <summary>
+            Obtiene los campos clave de una tabla.
+            </summary>
+            <param name="sNombreTabla"></param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.IsKey(System.String)">
+            <summary>
+            Compruba si el campo es clave primaria
+            </summary>
+            <param name="sColumn">Nombre del campo</param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.GetProperty(System.String,ClsAccessData.ClsStructure.PropertyType)">
+            <summary>
+            Devuelve la propiedad del campo especificada
+            </summary>
+            <param name="sNombreCampo">
+            Nombre del campo a buscar
+            </param>
+            <param name="oPropiedad">
+            Propiedad que se va a devolver
+            </param>
+            <returns>
+            Devuelve el valor de la propiedad
+            </returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.GetQuery(ClsAccessData.ClsStructure.QueryType,System.Object)">
+            <summary>
+            Devuelve la consulta de actualización, borrado o inserción a la tabla.
+            </summary>
+            <param name="oType">Tipo se operación DELETE, UPDATE, INSERT, SELECT</param>
+            <param name="obj">Colección de valores a actualizar a la tabla.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.GetWhere">
+            <summary>
+            Obtenemos el Where para la tabla.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.GetData(System.String,System.Object)">
+            <summary>
+            Función que formatea entre comillas simples (') el valor de un campo 
+            pasado como parámetro si el tipo de datos es varchar o datetime.
+            </summary>
+            <param name="sNombreCampo">
+            Nombre del campo cuyo contenido se va a retornar cuando la propiedad Tag del control 
+            especifica más de un campo separado por ";"
+            </param>
+            <param name="sValorCampo">
+            Valor que contiene el campo que será formateado
+            </param>
+            <returns>
+            Devuelve o no entre comillas el valor que contiene el control dependiendo del tipo de 
+            datos del campo de la tabla al que corresponda.
+            </returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.TypeData(System.String,System.String)">
+            <summary>
+            Devuelve el valor del campo con su valor correspondiente.
+            </summary>
+            <param name="sTipoCampo"></param>
+            <param name="sValorCampo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.CheckTable(System.Object)">
+            <summary>
+            Comprueba si esta definido el datos miembro BASETABLE
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.CheckKeys(System.Object)">
+            <summary>
+            Comprueba si esta definido los campos clave de la tabla, si no esta definido debe dar un error.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.CheckFields(System.Object)">
+            <summary>
+            Compruba si están definidos todos los campos de la base de datos
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.ValueInitial">
+            <summary>
+            Inicializa las variables a nulo.
+            </summary>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.Save(System.Object)">
+            <summary>
+            Añade un nuevo campo a la tabla.
+            </summary>
+            <param name="obj">Objeto que contiene la información de la clase.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.Update(System.Object)">
+            <summary>
+            Actuliza la tabla
+            </summary>
+            <param name="obj">Objeto que contiene la información de la clase.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.Delete(System.Object)">
+            <summary>
+            Borrar un registro.
+            </summary>
+            <param name="obj">Objeto que contiene la información de la clase.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.ExecuteQuery(System.Object,ClsAccessData.ClsStructure.QueryType)">
+            <summary>
+            Ejecuta la culsuta de UPDATE,INSERT,DELETE.
+            </summary>
+            <param name="eTipoQuery">Indica el tipo de operación.</param>
+            <param name="obj">Indica el tipo de operación.</param>
+        </member>
+        <member name="M:ClsAccessData.ClsStructure.GetFields(System.Object)">
+            <summary>
+            Obtiene los valores de los campos.
+            </summary>
+            <param name="obj">Objeto que contiene los datos del registro de la tabla.</param>
+        </member>
+        <member name="P:ClsAccessData.ClsStructure.OColumns">
+            <summary>
+            Collección de Columnas de la tabla actualmente inializada.
+            </summary>
+        </member>
+        <member name="T:ClsAccessData.ClsStructure.QueryType">
+            <summary>
+            Tipos de Query para atacar la base datos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.QueryType.UPDATE">
+            <summary>
+            Transacción de actualización.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.QueryType.INSERT">
+            <summary>
+            Transacción de inserción.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.QueryType.DELETE">
+            <summary>
+            Transacción de borrado.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.QueryType.SELECT">
+            <summary>
+            Transacción de Obtención de registro.
+            </summary>
+        </member>
+        <member name="T:ClsAccessData.ClsStructure.PropertyType">
+            <summary>
+            Tipos de propiedades de los campos.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.PropertyType.DataType">
+            <summary>
+            Tipo de dato.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.PropertyType.FieldLength">
+            <summary>
+            Longuitud del campo.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.PropertyType.ISNull">
+            <summary>
+            Indica si permite nulos el campo.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.PropertyType.DefaultData">
+            <summary>
+            Valor por defecto del campo.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.PropertyType.PrimaryKey">
+            <summary>
+            Indica si el campo es primary key.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsStructure.PropertyType.CountPrimarykeys">
+            <summary>
+            Contiene el numero de campos clave de una tabla.
+            </summary>
+        </member>
+        <member name="F:ClsAccessData.ClsTraccer.bDebug">
+            <summary>
+            Guarda un texto en un Fichero de Texto
+            </summary>
+        </member>
+    </members>
+</doc>

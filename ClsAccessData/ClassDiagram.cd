@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClsAccessData.ClsTraccer" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAACAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>ClsTraccer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Connection.ClsConnection">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAiBEEAAiAAkAEAAIBAAAAAAAAAAACAEAgKACAgg=</HashCode>
+      <FileName>Connection\ClsConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.ClsStructure" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAwAAYAAkCAAQRQAAAAAAEABoQEhAQAAgEAAQAAAACA=</HashCode>
+      <FileName>ClsStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Controller.ClsMemberClass.ClsFieldClass">
+    <Position X="0.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Controller\ClsMemberClass\ClsFieldClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Controller.ClsMemberClass.ClsObjectClass">
+    <Position X="4.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAhAAJIAAAAgAAKAAAAAKAEAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Controller\ClsMemberClass\ClsObjectClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Controller.ClsMemberClass.ClsPropertyClass">
+    <Position X="0.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAkAAAAABAAAAAAAAAAAAEAE=</HashCode>
+      <FileName>Controller\ClsMemberClass\ClsPropertyClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Schema.ClsColumn">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="ClsAccessData.Schema.ClsColumn.PropertyType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Schema\ClsColumn.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAJQAAAAAAABAAAAAAAAAAAIAAAAAAAAgAA=</HashCode>
+      <FileName>Schema\ClsColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Schema.ClsSchema">
+    <Position X="6.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAABAAAAIABAAAAAAgQAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Schema\clsSchema.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="oTables" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ClsAccessData.Schema.ClsTable">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkCQAAAAAgAAAAAAAAAAAAAAACAAAAAAAEAAAAIAAA=</HashCode>
+      <FileName>Schema\ClsTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Data.ClsValidateObjects">
+    <Position X="8.25" Y="9.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="ClsAccessData.Data.ClsValidateObjects.QueryType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\ClsValidateObjects.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAARAAAAAAAAABAEBAAAAAAAAAAEAAACA=</HashCode>
+      <FileName>Data\ClsValidateObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClsAccessData.Data.ClsExecuteQuery">
+    <Position X="10.5" Y="8.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="ClsAccessData.Data.ClsExecuteQuery.DelegadoSelect" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\ClsExecuteQuery.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAQAIEAAAAAAAgCAAAAAAMAAgAEAEAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Data\ClsExecuteQuery.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="oCon" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

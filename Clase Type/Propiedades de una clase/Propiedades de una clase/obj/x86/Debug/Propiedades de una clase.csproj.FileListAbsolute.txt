@@ -1,0 +1,10 @@
+C:\Users\W7 Desarrollador\AppData\Local\Temporary Projects\Propiedades de una clase\bin\Debug\Propiedades de una clase.exe
+C:\Users\W7 Desarrollador\AppData\Local\Temporary Projects\Propiedades de una clase\bin\Debug\Propiedades de una clase.pdb
+C:\Users\W7 Desarrollador\AppData\Local\Temporary Projects\Propiedades de una clase\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\W7 Desarrollador\AppData\Local\Temporary Projects\Propiedades de una clase\obj\x86\Debug\Propiedades de una clase.exe
+C:\Users\W7 Desarrollador\AppData\Local\Temporary Projects\Propiedades de una clase\obj\x86\Debug\Propiedades de una clase.pdb
+E:\proyecto\Tareas\Clase Type\Propiedades de una clase\Propiedades de una clase\obj\x86\Debug\Propiedades de una clase.exe
+E:\proyecto\Tareas\Clase Type\Propiedades de una clase\Propiedades de una clase\obj\x86\Debug\Propiedades de una clase.pdb
+E:\proyecto\Tareas\Clase Type\Propiedades de una clase\Propiedades de una clase\bin\Debug\Propiedades de una clase.exe
+E:\proyecto\Tareas\Clase Type\Propiedades de una clase\Propiedades de una clase\bin\Debug\Propiedades de una clase.pdb
+E:\proyecto\Tareas\Clase Type\Propiedades de una clase\Propiedades de una clase\obj\x86\Debug\ResolveAssemblyReference.cache
