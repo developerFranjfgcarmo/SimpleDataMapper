@@ -6,7 +6,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
     /// <summary>
     ///     Almacena el nombre de una propiedad de una clase.
     /// </summary>
-    internal class ClsPropertyClass : Disposable
+    internal class PropertyClass : Disposable
     {
         #region Declaración de campos.
 
@@ -23,7 +23,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// <param name="sProperty">Nombre de la propiedad.</param>
         /// <param name="bCanRead">Marca si la propiedad se puede leer.</param>
         /// <param name="bCanWrite">Marca si la propiedad se puede sobreescribir.</param>
-        internal ClsPropertyClass(String sProperty, Boolean bCanRead, Boolean bCanWrite)
+        internal PropertyClass(String sProperty, Boolean bCanRead, Boolean bCanWrite)
         {
             SProperty = sProperty;
             _bCanRead = bCanRead;

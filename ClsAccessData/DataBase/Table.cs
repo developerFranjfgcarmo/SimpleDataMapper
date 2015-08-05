@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SimpleDataMapper.utilities;
 
-namespace SimpleDataMapper.Schema
+namespace SimpleDataMapper.DataBase
 {
     internal class Table : Disposable
     {
@@ -46,7 +46,7 @@ namespace SimpleDataMapper.Schema
 
         #endregion
 
-        #region Métodos públicos.
+        #region [Public Methods]
 
         /// <summary>
         ///     Comprueba si el campo es Primary key.

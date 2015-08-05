@@ -367,7 +367,7 @@ namespace SimpleDataMapper
             }
             //Ejecutamos la transacción a la base de datos.
             if (oType != QueryType.SELECT)
-                oCon.DbExecute(sQuery);
+                oCon.Execute(sQuery);
             else
                 dtTablaSelect = oCon.InitDataAdapter(sQuery);
         }
@@ -693,16 +693,16 @@ namespace SimpleDataMapper
                 oCon.DbOpen();
                 if (eTipoQuery != QueryType.SELECT)
                 {
-                    oCon.DbBeginTransaction();
+                    oCon.BeginTransaction();
                     GetQuery(eTipoQuery, obj);
-                    oCon.BdCommit();
+                    oCon.Commit();
                 }
                 else
                     GetQuery(eTipoQuery, obj);
             }
             catch (Exception ex)
             {
-                oCon.BdRollBack();
+                oCon.RollBack();
             }
             finally
             {

@@ -6,12 +6,8 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
     /// <summary>
     ///     Esta clase almacena los campos y las propiedades de la clase.
     /// </summary>
-    internal class ClsFieldClass : Disposable
+    internal class FieldClass : Disposable
     {
-        #region Declaración de campos.
-
-        #endregion
-
         #region Declaración de constructor.
 
         /// <summary>
@@ -19,9 +15,9 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// </summary>
         /// <param name="sField">Campo de la clase</param>
         /// <param name="sProperty">Objeto ClsPorpertyClass que almacenará la propiedad del campo.</param>
-        internal ClsFieldClass(String sField, ClsPropertyClass sProperty)
+        internal FieldClass(string sField, PropertyClass sProperty)
         {
-            SField = sField;
+            Field = sField;
             Property = sProperty;
         }
 
@@ -32,12 +28,12 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// <summary>
         ///     Carga o devuelve el valor del campo.
         /// </summary>
-        internal string SField { get; set; }
+        internal string Field { get; set; }
 
         /// <summary>
         ///     Carga o devuelve la propiedad del campo.
         /// </summary>
-        internal ClsPropertyClass Property { get; set; }
+        internal PropertyClass Property { get; set; }
 
         #endregion
     }

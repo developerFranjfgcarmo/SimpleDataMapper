@@ -4,45 +4,19 @@ using System;
 using System.Collections.Generic;
 using SimpleDataMapper.Connection;
 using SimpleDataMapper.Controller.ClsMemberClass;
-using SimpleDataMapper.Schema;
+using SimpleDataMapper.DataBase;
 using SimpleDataMapper.utilities;
 
 namespace SimpleDataMapper.Data
 {
-    internal class ClsValidateObjects : Disposable
+    internal class ValidateObjects : Disposable
     {
-        #region Declaración de campos.
-
-        /// <summary>
-        ///     Tipos de Query para atacar la base datos.
-        /// </summary>
-        public enum QueryType
-        {
-            /// <summary>
-            ///     Transacción de actualización.
-            /// </summary>
-            UPDATE,
-
-            /// <summary>
-            ///     Transacción de inserción.
-            /// </summary>
-            INSERT,
-
-            /// <summary>
-            ///     Transacción de borrado.
-            /// </summary>
-            DELETE,
-
-            /// <summary>
-            ///     Transacción de Obtención de registro.
-            /// </summary>
-            SELECT
-        }
+        #region [Private Properties]    
 
         /// <summary>
         ///     Colección de objetos sobre los cuales se vas a realizar las operaciones de DML.
         /// </summary>
-        private readonly Dictionary<String, ClsObjectClass> myColObjects;
+        //private readonly Dictionary<String, ClsObjectClass> _colObjects;
 
         /*/// <summary>
         /// Objeto que contiene una la colección de objetos de la misma clase.
@@ -52,19 +26,19 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Colección de tabla a actualizar.
         /// </summary>
-        private Dictionary<String, Schema> myColTables;
+        private Dictionary<String, Schema> _colTables;
 
         /// <summary>
         ///     Almacena la lista de campos de la tabla, los cuales coinciden con la clase. El resto de campos serán tratados por
         ///     la base de datos.
         ///     Estos campos serán posteriormente utilizados para realizar las operaciones de DML.
         /// </summary>
-        private Dictionary<String, Table> myValidateTables;
+        private Dictionary<String, Table> _validateTables;
 
         /// <summary>
         ///     Objeto que contiene la Conexión a la base de datos.
         /// </summary>
-        private ClsConnection oConnection;
+        private ClsConnection _connection;
 
         #endregion
 
@@ -73,10 +47,7 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Devuelve la Colección de Objetos inicializados.
         /// </summary>
-        internal Dictionary<String, ClsObjectClass> MyColObjects
-        {
-            get { return myColObjects; }
-        }
+        internal Dictionary<String, ObjectClass> ColumnObjects { get; set; }
 
         #endregion
 
@@ -89,18 +60,20 @@ namespace SimpleDataMapper.Data
         ///     orden en el que se
         ///     desea que actualicen a la base de datos.
         /// </param>
-        internal ClsValidateObjects(ClsConnection oConnection, params Object[] myColObjects)
+        internal ValidateObjects(ClsConnection oConnection, params Object[] myColObjects)
         {
-            for (int i = 0; i < myColObjects.Length; i++)
+            ClsConnection connection1;
+            ClsConnection connection;
+            foreach (object t in myColObjects)
             {
-                this.oConnection = oConnection;
-                this.myColObjects = new Dictionary<string, ClsObjectClass>();
+                this._connection = oConnection;
+                this.ColumnObjects = new Dictionary<string, ObjectClass>();
                 //Inicializamos las propiedades y los campos del objeto de la clase pasada. Al objeto dictionary le ponemos como clave principal en nombre de la tabla
-                var myObjectClass = new ClsObjectClass(myColObjects[i]);
-                this.myColObjects.Add(myObjectClass.STableName, myObjectClass);
-                var myObjectTable = new Schema(myObjectClass.STableName, this.oConnection);
-                myColTables = new Dictionary<string, Schema>();
-                myColTables.Add(myObjectClass.STableName, myObjectTable);
+                var myObjectClass = new ObjectClass(t);
+                this.ColumnObjects.Add(myObjectClass.TableName, myObjectClass);
+                var myObjectTable = new Schema(myObjectClass.TableName, this._connection);
+                _colTables = new Dictionary<string, Schema>();
+                _colTables.Add(myObjectClass.TableName, myObjectTable);
                 ColummnsValidate();
             }
         }
@@ -111,33 +84,33 @@ namespace SimpleDataMapper.Data
 
         private void ColummnsValidate()
         {
-            foreach (var myCol in MyColObjects)
+            foreach (var myCol in ColumnObjects)
             {
-                myValidateTables = new Dictionary<String, Table>();
+                _validateTables = new Dictionary<String, Table>();
                 List<String> myValidatePk = null;
                 var myValidateColumns = new List<Column>();
                 int iCountPK = 0;
                 Schema oSchema;
                 //Cargamos el objeto ClsShema, el cual contiene todas las colecciones de tablas.
-                myColTables.TryGetValue(myCol.Key, out oSchema);
+                _colTables.TryGetValue(myCol.Key, out oSchema);
                 //Inicializamos el objeto ClsTable, el cual contiene las propiedades de la tabla.
                 Table oTable = oSchema.GetTable(myCol.Key);
                 if (oSchema != null)
                 {
                     //Obtenemos las colecciones de PrimaryKey de la tabla
                     myValidatePk = oSchema.GetTable(myCol.Key).ColPrimaryKey;
-                    foreach (ClsFieldClass myMember in myCol.Value.OMyMembersClass)
+                    foreach (FieldClass myMember in myCol.Value.MembersOfClass)
                     {
                         //todo:Mirar si es necesario implementar que valide las primary key de la tabla y del objeto.
-                        if (oTable.IsPrimaryKeys(myMember.SField))
+                        if (oTable.IsPrimaryKeys(myMember.Field))
                             iCountPK++;
                         //De momento se ha dejado también que se cargen sólo los campos que están en la clase.
                         //Es una totenría tratar campo que quizas no se muestren porque sean de auditoría y que la propia 
                         //base de datos se va encargar de insertar a nulo, con su valor por defecto.
-                        if (oTable.ThereIsColumn(myMember.SField))
+                        if (oTable.ThereIsColumn(myMember.Field))
                         {
                             //Obtiene la columna de la tabla y la añade a la colección.
-                            Column myColumn = oTable.GetColumn(myMember.SField);
+                            Column myColumn = oTable.GetColumn(myMember.Field);
                             if (myColumn != null)
                                 myValidateColumns.Add(myColumn);
                         }
@@ -149,10 +122,10 @@ namespace SimpleDataMapper.Data
                         ToString());
                 //Si la columna existe se añade al objeto tabla.
                 if (myValidateColumns != null)
-                    myValidateTables.Add(myCol.Key, new Table(myCol.Key, myValidatePk, myValidateColumns));
+                    _validateTables.Add(myCol.Key, new Table(myCol.Key, myValidatePk, myValidateColumns));
             }
             //Una Recorrido la colección de tabla
-            myColTables = null;
+            _colTables = null;
         }
 
         private String GetValueObject(Column oColumn, Object sValue)
@@ -257,12 +230,12 @@ namespace SimpleDataMapper.Data
         ///     Obtenemos el Where para la tabla.
         /// </summary>
         /// <returns>Devuelve un string con la cadena instrucción Where.</returns>
-        private String GetWhere(String sNameTable, ClsObjectClass objCls)
+        private String GetWhere(String sNameTable, ObjectClass objCls)
         {
             String sWhere = "";
-            foreach (String sPK in myValidateTables[sNameTable].ColPrimaryKey)
+            foreach (String sPK in _validateTables[sNameTable].ColPrimaryKey)
             {
-                Column myColumn = myValidateTables[sNameTable].GetColumn(sPK);
+                Column myColumn = _validateTables[sNameTable].GetColumn(sPK);
                 if (!String.IsNullOrEmpty(sWhere)) sWhere += " AND ";
                 sWhere += sPK + " = " + GetValueObject(myColumn, objCls[myColumn.NameColumn]);
             }
@@ -270,28 +243,28 @@ namespace SimpleDataMapper.Data
         }
 
 
-        internal String GetQuery(QueryType eQueryType, ClsObjectClass objCls, Object obj)
+        internal String GetQuery(QueryType eQueryType, ObjectClass objCls, Object obj)
         {
             String sFields = "", sValue = "", sComa = ",", sQuery = "", sWhereSelect = "";
 
             if (obj != null)
                 objCls.MyObject = obj;
 
-            foreach (Column myColumn in myValidateTables[objCls.STableName].ColColums)
+            foreach (Column myColumn in _validateTables[objCls.TableName].ColColums)
             {
                 //Recoremos la colección de objetos
                 switch (eQueryType)
                 {
-                    case QueryType.DELETE:
+                    case QueryType.Delete:
                         break;
-                    case QueryType.UPDATE:
+                    case QueryType.Update:
                         sFields = myColumn.NameColumn;
                         sValue = GetValueObject(myColumn, objCls[myColumn.NameColumn]);
                         if (!String.IsNullOrEmpty(sQuery))
                             sQuery += sComa;
                         sQuery += sFields + "=" + sValue;
                         break;
-                    case QueryType.INSERT:
+                    case QueryType.Insert:
                         if (!String.IsNullOrEmpty(sFields))
                             sFields += sComa;
                         if (!String.IsNullOrEmpty(sValue))
@@ -299,7 +272,7 @@ namespace SimpleDataMapper.Data
                         sFields += myColumn.NameColumn;
                         sValue += GetValueObject(myColumn, objCls[myColumn.NameColumn]);
                         break;
-                    case QueryType.SELECT:
+                    case QueryType.Select:
                         if (!String.IsNullOrEmpty(sFields))
                             sFields += sComa;
                         if (objCls[myColumn.NameColumn] != null)
@@ -316,25 +289,25 @@ namespace SimpleDataMapper.Data
 
             switch (eQueryType)
             {
-                case QueryType.DELETE:
-                    sQuery = "DELETE FROM " + objCls.STableName + " WHERE " + GetWhere(objCls.STableName, objCls);
+                case QueryType.Delete:
+                    sQuery = "DELETE FROM " + objCls.TableName + " WHERE " + GetWhere(objCls.TableName, objCls);
                     break;
-                case QueryType.UPDATE:
-                    sQuery = "UPDATE  " + objCls.STableName + " SET " + sQuery + " WHERE " +
-                             GetWhere(objCls.STableName, objCls);
+                case QueryType.Update:
+                    sQuery = "UPDATE  " + objCls.TableName + " SET " + sQuery + " WHERE " +
+                             GetWhere(objCls.TableName, objCls);
                     break;
-                case QueryType.INSERT:
-                    sQuery = "INSERT INTO  " + objCls.STableName + "(" + sFields + ")" + " VALUES (" + sValue + ")";
+                case QueryType.Insert:
+                    sQuery = "INSERT INTO  " + objCls.TableName + "(" + sFields + ")" + " VALUES (" + sValue + ")";
                     break;
-                case QueryType.SELECT:
-                    sQuery = "SELECT " + sFields + " FROM " + objCls.STableName + " WHERE " + sWhereSelect;
+                case QueryType.Select:
+                    sQuery = "SELECT " + sFields + " FROM " + objCls.TableName + " WHERE " + sWhereSelect;
                     break;
             }
 
             return sQuery;
         }
 
-        internal String GetQuery(QueryType eQueryType, ClsObjectClass objCls)
+        internal String GetQuery(QueryType eQueryType, ObjectClass objCls)
         {
             return GetQuery(eQueryType, objCls, null);
         }

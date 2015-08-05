@@ -11,45 +11,14 @@ namespace SimpleDataMapper.Connection
         #region" Región de declaración de variables."
 
         /// <summary>
-        ///     Instancia de tipo SqlConnection que se conecta a la be de datos
-        /// </summary>
-        private readonly NpgsqlConnection _oConnection;
-
-        /// <summary>
-        ///     Datos miembros para la conexión a la base datos.
-        /// </summary>
-        private readonly string _sBd;
-
-        /// <summary>
-        ///     Datos miembros para la conexión a la base datos.
-        /// </summary>
-        private readonly string _sContrenaBd;
-
-        /// <summary>
-        ///     Datos miembros para la conexión a la base datos.
-        /// </summary>
-        private readonly string _sServidorDb;
-
-        /// <summary>
-        ///     Datos miembros para la conexión a la base datos.
-        /// </summary>
-        private readonly string _sUsuarioBd;
-
-        /// <summary>
         ///     Representa un conjunto de comandos de datos y una conexión de base de
         ///     datos que se utilizan para rellenar un DataSet
         /// </summary>
-        private NpgsqlDataAdapter _oMiDataAdapter;
-
-
-        /// <summary>
-        ///     Representa una transacción de Transact-SQL que se realiza en una be de datos de SQL Server
-        /// </summary>
-        private NpgsqlTransaction _oTransaccion;
+        private NpgsqlDataAdapter _miDataAdapter;
 
         #endregion;
 
-        #region"Declaración de los métodos miembros de la clase."
+        #region [Properties and Constructor]
 
         /// <summary>
         ///     Método constructor de la clase conexión
@@ -60,64 +29,46 @@ namespace SimpleDataMapper.Connection
         /// <param name="sContrenaBd">Contraseña de la base de datos.</param>
         public ClsConnection(string sServidorDb, string sBd, string sUsuarioBd, string sContrenaBd)
         {
-            _sServidorDb = sServidorDb;
-            _sBd = sBd;
-            _sUsuarioBd = sUsuarioBd;
-            _sContrenaBd = sContrenaBd;
+            Server = sServidorDb;
+            DataBase = sBd;
+            User = sUsuarioBd;
+            Password = sContrenaBd;
 
-            string sConectionString = string.Format("User Id={0};Password={1};Host={2};Database={3}", _sUsuarioBd,
-                _sContrenaBd, _sServidorDb, _sBd);
-            _oConnection = new NpgsqlConnection {ConnectionString = sConectionString};
+            string sConectionString = string.Format("User Id={0};Password={1};Host={2};Database={3}", Server,
+                Password, Server, DataBase);
+            Connection = new NpgsqlConnection {ConnectionString = sConectionString};
             // this.oConnection.Open();
         }
 
         /// <summary>
         ///     Devuelve el servidor de la base de datos.
         /// </summary>
-        private string SServidorDb
-        {
-            get { return _sServidorDb; }
-        }
+        private string Server { get; set; }
 
         /// <summary>
         ///     Devuelve la contraseña a la base de datos.
         /// </summary>
-        private string SContrenaBd
-        {
-            get { return _sContrenaBd; }
-        }
+        private string Password { get; set; }
 
         /// <summary>
         ///     Devuelve en nombre de la base datos.
         /// </summary>
-        private string SBD
-        {
-            get { return _sBd; }
-        }
+        private string DataBase { get; set; }
 
         /// <summary>
         ///     Devuelve el usuario de la base datos.
         /// </summary>
-        private string SUsuarioBD
-        {
-            get { return _sUsuarioBd; }
-        }
+        private string User { get; set; }
 
         /// <summary>
         ///     Obtiene el objeto oTransaccion.
         /// </summary>
-        internal NpgsqlTransaction DBTransaccion
-        {
-            get { return _oTransaccion; }
-        }
+        internal NpgsqlTransaction Transaccion { get; private set; }
 
         /// <summary>
         ///     Obtiene el objeto oConnection.
         /// </summary>
-        public NpgsqlConnection DbConnection
-        {
-            get { return _oConnection; }
-        }
+        public NpgsqlConnection Connection { get; private set; }
 
         /// <summary>
         ///     Indica el estado de la conexión de la base de datos.
@@ -125,7 +76,7 @@ namespace SimpleDataMapper.Connection
         /// <returns>Devuelve un tipo ConnectionState que indica el estado de la conexión.</returns>
         internal ConnectionState Status()
         {
-            return _oConnection.State;
+            return Connection.State;
         }
 
         /// <summary>
@@ -133,9 +84,9 @@ namespace SimpleDataMapper.Connection
         /// </summary>
         public void DbOpen()
         {
-            if (_oConnection.State == ConnectionState.Closed)
+            if (Connection.State == ConnectionState.Closed)
             {
-                _oConnection.Open();
+                Connection.Open();
             }
         }
 
@@ -144,36 +95,36 @@ namespace SimpleDataMapper.Connection
         /// </summary>
         public void DbClose()
         {
-            if (_oConnection.State == ConnectionState.Open)
+            if (Connection.State == ConnectionState.Open)
             {
-                _oConnection.Close();
+                Connection.Close();
             }
         }
 
         /// <summary>
         ///     Comienza una transacción a la base datos.
         /// </summary>
-        internal void DbBeginTransaction()
+        internal void BeginTransaction()
         {
-            _oTransaccion = _oConnection.BeginTransaction();
+            Transaccion = Connection.BeginTransaction();
         }
 
         /// <summary>
         ///     Confirma la transacción actual a la base datos.
         /// </summary>
-        internal void BdCommit()
+        internal void Commit()
         {
-            _oTransaccion.Commit();
-            _oTransaccion = null;
+            Transaccion.Commit();
+            Transaccion = null;
         }
 
         /// <summary>
         ///     Cancela la transacción actual a la base datos.
         /// </summary>
-        internal void BdRollBack()
+        internal void RollBack()
         {
-            _oTransaccion.Rollback();
-            _oTransaccion = null;
+            Transaccion.Rollback();
+            Transaccion = null;
         }
 
         /// <summary>
@@ -181,13 +132,13 @@ namespace SimpleDataMapper.Connection
         /// </summary>
         /// <param name="sSql">Instrucción DML</param>
         /// <returns>Devuelve el número de registro afectados.</returns>
-        public int DbExecute(string sSql)
+        public int Execute(string sSql)
         {
-            int iCount = 0;
-            NpgsqlCommand oCmd = _oConnection.CreateCommand();
-            if (_oTransaccion != null)
+            var iCount = 0;
+            var oCmd = Connection.CreateCommand();
+            if (Transaccion != null)
             {
-                oCmd.Transaction = _oTransaccion;
+                oCmd.Transaction = Transaccion;
             }
             oCmd.CommandText = sSql;
             oCmd.CommandTimeout = 120;
@@ -206,13 +157,13 @@ namespace SimpleDataMapper.Connection
             var dsRes = new DataSet();
             try
             {
-                _oMiDataAdapter = new NpgsqlDataAdapter(sQuery, DbConnection)
+                _miDataAdapter = new NpgsqlDataAdapter(sQuery, Connection)
                 {
-                    SelectCommand = {Transaction = DBTransaccion}
+                    SelectCommand = {Transaction = Transaccion}
                 };
 
-                _oMiDataAdapter.Fill(dsRes);
-                _oMiDataAdapter = null;
+                _miDataAdapter.Fill(dsRes);
+                _miDataAdapter = null;
             }
             catch (Exception ex)
             {
@@ -228,10 +179,10 @@ namespace SimpleDataMapper.Connection
         /// <returns>Devuelve un objeto DataSet.</returns>
         public NpgsqlDataReader DataReader(String sQuery)
         {
-            var command = new NpgsqlCommand(sQuery, _oConnection);
+            var command = new NpgsqlCommand(sQuery, Connection);
             if (Status() == ConnectionState.Closed)
                 DbOpen();
-            NpgsqlDataReader reader = command.ExecuteReader();
+            var reader = command.ExecuteReader();
 
             return reader;
         }

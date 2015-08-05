@@ -13,24 +13,24 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
     /// <summary>
     ///     Esta clase almacena todas las propiedades y campos de una clase.
     /// </summary>
-    internal class ClsObjectClass : Disposable
+    internal class ObjectClass : Disposable
     {
-        #region Declaración de campos.
+        #region [Private Properties]
 
         /// <summary>
         ///     Variable obligatoria, Se debe definir el nombre de la tabla sobre la cual se va a realizar la operación DML.
         /// </summary>
-        private const String Tablename = "TABLENAME";
+        private const string Tablename = "TABLENAME";
 
         /// <summary>
         ///     Lista de propiedades del objeto.
         /// </summary>
-        private List<ClsPropertyClass> _oListPropertiesClass;
+        private List<PropertyClass> _listPropertiesClass;
 
         /// <summary>
         ///     Representa al tipo de objeto (myObject).
         /// </summary>
-        private Type _oType;
+        private Type _type;
 
         #endregion
 
@@ -40,7 +40,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         ///     Constructor de la clase ClsObjectClass
         /// </summary>
         /// <param name="myObject"></param>
-        internal ClsObjectClass(Object myObject)
+        internal ObjectClass(Object myObject)
         {
             if (myObject != null)
             {
@@ -53,7 +53,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
 
         #endregion
 
-        #region Declaración de propiedades.
+        #region [Internal Properties]
 
         /// <summary>
         ///     Propiedad que obtiene o devuelve la instancia del objeto.
@@ -63,63 +63,62 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// <summary>
         ///     Devuelve el nombre de la tabla.
         /// </summary>
-        internal string STableName { get; private set; }
+        internal string TableName { get; private set; }
 
         /// <summary>
         ///     Devuelve la lista de campos o datos miembros de las clase.
         /// </summary>
-        internal List<ClsFieldClass> OMyMembersClass { get; private set; }
+        internal List<FieldClass> MembersOfClass { get; private set; }
 
         #endregion
 
-        #region Declaración de Métodos privados.
+        #region [Private Methods]
 
         /// <summary>
         ///     Carga los campos y las propiedades de la clase.
         /// </summary>
         private void LoadMenbersClass()
         {
-            bool bExitTable = false;
-            _oListPropertiesClass = new List<ClsPropertyClass>();
+            var bExitTable = false;
+            _listPropertiesClass = new List<PropertyClass>();
             var oListFielsClass = new List<String>();
-            _oType = MyObject.GetType();
-            OMyMembersClass = new List<ClsFieldClass>();
+            _type = MyObject.GetType();
+            MembersOfClass = new List<FieldClass>();
             //Recorremos cada campo y propiedad de la clase.
-            foreach (
-                MemberInfo oMember in
-                    _oType.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+            var listMembers =
+                _type.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Where(oMember => oMember.DeclaringType != null && ((oMember.DeclaringType.Name == _type.Name) &&
+                                                                        (oMember.MemberType == MemberTypes.Field ||
+                                                                         oMember.MemberType == MemberTypes.Property)));
+            foreach (var member in listMembers)
             {
-                //Cargamos solamente los campos y sus propiedades, el resto de elementos de la clase los ignoramos.
-                if (oMember.DeclaringType != null && ((oMember.DeclaringType.Name == _oType.Name) &&
-                                                      (oMember.MemberType == MemberTypes.Field ||
-                                                       oMember.MemberType == MemberTypes.Property)))
+                if (member.MemberType == MemberTypes.Property)
                 {
-                    if (oMember.MemberType == MemberTypes.Property)
+                    var myProperty = _type.GetProperty(member.Name);
+                    _listPropertiesClass.Add(new PropertyClass(member.Name, myProperty.CanRead,
+                        myProperty.CanWrite));
+                }
+                else //Cargamos los campos de la clase.
+                {
+                    //Cargamos el nombre de la tabla.
+                    if (Tablename == member.Name.ToUpper())
                     {
-                        PropertyInfo myProperty = _oType.GetProperty(oMember.Name);
-                        _oListPropertiesClass.Add(new ClsPropertyClass(oMember.Name, myProperty.CanRead,
-                            myProperty.CanWrite));
+                        var myFieldInfo = _type.GetField(member.Name,
+                            BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                        if (myFieldInfo != null) TableName = (String) myFieldInfo.GetValue(MyObject);
+                        if (String.IsNullOrEmpty(TableName))
+                            bExitTable = true;
                     }
-                    else //Cargamos los campos de la clase.
-                    {
-                        //Cargamos el nombre de la tabla.
-                        if (Tablename == oMember.Name.ToUpper())
-                        {
-                            FieldInfo myFieldInfo = _oType.GetField(oMember.Name,
-                                BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-                            if (myFieldInfo != null) STableName = (String) myFieldInfo.GetValue(MyObject);
-                            if (String.IsNullOrEmpty(STableName))
-                                bExitTable = true;
-                        }
-                        else //Cargamos el nombre del campo.
-                            oListFielsClass.Add(oMember.Name);
+                    else
+                    {//Cargamos el nombre del campo.
+                        oListFielsClass.Add(member.Name);                        
                     }
                 }
             }
             //Relacionamos cada campo, con su propiedad.
-            if ((oListFielsClass.Count > 0) && (_oListPropertiesClass.Count > 0))
+            if ((oListFielsClass.Count > 0) && (_listPropertiesClass.Count > 0))
             {
-                foreach (ClsPropertyClass sProperty in _oListPropertiesClass)
+                foreach (PropertyClass sProperty in _listPropertiesClass)
                 {
                     bool bSalir = false;
                     int i = 0;
@@ -129,7 +128,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
                             StringComparison.CurrentCultureIgnoreCase))
                         {
                             bSalir = true;
-                            OMyMembersClass.Add(new ClsFieldClass(oListFielsClass[i], sProperty));
+                            MembersOfClass.Add(new FieldClass(oListFielsClass[i], sProperty));
                             oListFielsClass.Remove(oListFielsClass[i]);
                         }
                         i++;
@@ -173,14 +172,14 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// <param name="index">Índice de la propiedad a modificar.</param>
         private void SetValue(Object value, String sName, int index)
         {
-            ClsPropertyClass myElement = !String.IsNullOrEmpty(sName)
+            PropertyClass myElement = !String.IsNullOrEmpty(sName)
                 ? FindElementPropertyClass(sName)
-                : _oListPropertiesClass[index];
+                : _listPropertiesClass[index];
             if (myElement != null)
             {
                 if (myElement.BCanWrite)
                 {
-                    PropertyInfo myProperty = _oType.GetProperty(myElement.SProperty);
+                    PropertyInfo myProperty = _type.GetProperty(myElement.SProperty);
                     object result;
                     switch (value.GetType().UnderlyingSystemType.Name)
                     {
@@ -251,15 +250,15 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         private Object GetValue(String sName, int index = 0)
         {
             //Dependiendo si se 
-            ClsPropertyClass myElement = !String.IsNullOrEmpty(sName)
+            PropertyClass myElement = !String.IsNullOrEmpty(sName)
                 ? FindElementPropertyClass(sName)
-                : _oListPropertiesClass[index];
+                : _listPropertiesClass[index];
 
             if (myElement == null) throw new ArgumentException("No existe la propiedad " + sName, ToString());
             if (!myElement.BCanRead)
                 throw new ArgumentException("La propiedad " + sName + " no tiene definido la propiedad de lectura.",
                     ToString());
-            PropertyInfo myProperty = _oType.GetProperty(myElement.SProperty);
+            PropertyInfo myProperty = _type.GetProperty(myElement.SProperty);
             return myProperty.GetValue(MyObject, null);
             //todo:MEJORA. Quitar las exception y sustituir por una clase de negocio.
         }
@@ -270,10 +269,10 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// </summary>
         /// <param name="sName">Nombre del objeto a buscar.</param>
         /// <returns></returns>
-        private ClsPropertyClass FindElementPropertyClass(String sName)
+        private PropertyClass FindElementPropertyClass(String sName)
         {
-            ClsPropertyClass myElement =
-                _oListPropertiesClass.Find(
+            PropertyClass myElement =
+                _listPropertiesClass.Find(
                     myFindElement =>
                         String.Equals(myFindElement.SProperty, sName, StringComparison.CurrentCultureIgnoreCase));
 
@@ -339,7 +338,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         internal void CreateInstance()
         {
             Type newType = GetType();
-            object obj = Activator.CreateInstance(_oType);
+            object obj = Activator.CreateInstance(_type);
             MyObject = obj;
         }
 
@@ -350,7 +349,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// <returns>Devuelve true si existe el campo y false si no existe.</returns>
         internal Boolean ThereIsField(String sName)
         {
-            return OMyMembersClass.Any(myField => myField.SField == sName);
+            return MembersOfClass.Any(myField => myField.Field == sName);
         }
 
         #endregion

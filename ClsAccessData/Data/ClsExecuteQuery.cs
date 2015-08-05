@@ -30,7 +30,7 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Valida el Objeto con la tabla correspondiente.
         /// </summary>
-        private ClsValidateObjects myValidateObject;
+        private ValidateObjects myValidateObject;
 
         /// <summary>
         ///     Almacena una colección de objetos de diferentes clases pasados por parámetros.
@@ -72,7 +72,7 @@ namespace SimpleDataMapper.Data
         public void Insert(List<Object> myObject)
         {
             IniParamDml(myObject);
-            ExecuteQuery(ClsValidateObjects.QueryType.INSERT);
+            ExecuteQuery(QueryType.Insert);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace SimpleDataMapper.Data
         public void Insert(params Object[] myObject)
         {
             IniParamDml(myObject);
-            ExecuteQuery(ClsValidateObjects.QueryType.INSERT);
+            ExecuteQuery(QueryType.Insert);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace SimpleDataMapper.Data
         public void Update(List<Object> myObject)
         {
             IniParamDml(myObject);
-            ExecuteQuery(ClsValidateObjects.QueryType.UPDATE);
+            ExecuteQuery(QueryType.Update);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace SimpleDataMapper.Data
         public void Update(params Object[] myObject)
         {
             IniParamDml(myObject);
-            ExecuteQuery(ClsValidateObjects.QueryType.UPDATE);
+            ExecuteQuery(QueryType.Update);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace SimpleDataMapper.Data
         public void Delete(params Object[] myObject)
         {
             IniParamDml(myObject);
-            ExecuteQuery(ClsValidateObjects.QueryType.DELETE);
+            ExecuteQuery(QueryType.Delete);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace SimpleDataMapper.Data
         public void Delete(List<Object> myObject)
         {
             IniParamDml(myObject);
-            ExecuteQuery(ClsValidateObjects.QueryType.DELETE);
+            ExecuteQuery(QueryType.Delete);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace SimpleDataMapper.Data
         private void IniParamDml(params Object[] myObject)
         {
             oColObject = myObject;
-            myValidateObject = new ClsValidateObjects(oCon, oColObject);
+            myValidateObject = new ValidateObjects(oCon, oColObject);
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace SimpleDataMapper.Data
         {
             listObject = myObject;
             listObject.Add(myObject);
-            myValidateObject = new ClsValidateObjects(oCon, listObject[0]);
+            myValidateObject = new ValidateObjects(oCon, listObject[0]);
         }
 
         /// <summary>
@@ -200,35 +200,35 @@ namespace SimpleDataMapper.Data
         /// </summary>
         /// <param name="eTipoQuery">Indica el tipo de operación.</param>
         /// <param name="obj">Indica el tipo de operación.</param>
-        private void ExecuteQuery(ClsValidateObjects.QueryType eTipoQuery)
+        private void ExecuteQuery(QueryType eTipoQuery)
         {
             try
             {
                 if (oCon.Status() == ConnectionState.Closed)
                     oCon.DbOpen();
-                oCon.DbBeginTransaction();
+                oCon.BeginTransaction();
 
-                foreach (var myClsObj in myValidateObject.MyColObjects)
+                foreach (var myClsObj in myValidateObject.ColumnObjects)
                 {
                     if (oColObject != null)
                     {
                         //Ejecutamos la transacción a la base de datos.
-                        oCon.DbExecute(myValidateObject.GetQuery(eTipoQuery, myClsObj.Value));
+                        oCon.Execute(myValidateObject.GetQuery(eTipoQuery, myClsObj.Value));
                     }
                     else
                     {
                         foreach (Object myObj in listObject)
                         {
-                            oCon.DbExecute(myValidateObject.GetQuery(eTipoQuery, myClsObj.Value, myObj));
+                            oCon.Execute(myValidateObject.GetQuery(eTipoQuery, myClsObj.Value, myObj));
                         }
                     }
                 }
-                oCon.BdCommit();
+                oCon.Commit();
             }
             catch (NpgsqlException ex)
             {
                 //todo:MEJORA. Quitar las exception y sustituir por una clase de negocio.
-                oCon.BdRollBack();
+                oCon.RollBack();
                 throw new ArgumentException(ex.ToString(), ToString());
             }
             finally
@@ -272,12 +272,12 @@ namespace SimpleDataMapper.Data
         {
             var ResultSelect = new ArrayList();
             DataSet dtTablaSelect = null;
-            foreach (var myClsObj in myValidateObject.MyColObjects)
+            foreach (var myClsObj in myValidateObject.ColumnObjects)
             {
                 if (oColObject != null)
                 {
                     dtTablaSelect =
-                        oCon.InitDataAdapter(myValidateObject.GetQuery(ClsValidateObjects.QueryType.SELECT,
+                        oCon.InitDataAdapter(myValidateObject.GetQuery(QueryType.Select,
                             myClsObj.Value));
                     foreach (DataRow row in dtTablaSelect.Tables[0].Rows)
                     {
@@ -300,13 +300,13 @@ namespace SimpleDataMapper.Data
         private ArrayList SelectDataReader()
         {
             var ResultSelect = new ArrayList();
-            foreach (var myClsObj in myValidateObject.MyColObjects)
+            foreach (var myClsObj in myValidateObject.ColumnObjects)
             {
                 if (oColObject != null)
                 {
                     //Abrimos la conexión con el data Reader para obtener los registros.
                     NpgsqlDataReader reader =
-                        oCon.DataReader(myValidateObject.GetQuery(ClsValidateObjects.QueryType.SELECT, myClsObj.Value));
+                        oCon.DataReader(myValidateObject.GetQuery(QueryType.Select, myClsObj.Value));
                     //Obtenemos los nombres de la columna y lo almacenamos 
                     DataTable dt = reader.GetSchemaTable();
                     var nameColumns = new List<String>();

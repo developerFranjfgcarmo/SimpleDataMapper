@@ -4,12 +4,13 @@ using System.Data;
 using SimpleDataMapper.Connection;
 using SimpleDataMapper.utilities;
 
-namespace SimpleDataMapper.Schema
+namespace SimpleDataMapper.DataBase
 {
     //Todo:25/01/2012. Obtener el esquema y que se quede cargo en memoria
+    //Todo:persist in cache the shema.
     internal class Schema : Disposable
     {
-        #region Declaración de campos
+        #region [private properties]
 
         /// <summary>
         ///     Objeto que almacena la conexión de la base de datos.
@@ -17,18 +18,18 @@ namespace SimpleDataMapper.Schema
         private readonly ClsConnection _conection;
 
         /// <summary>
-        ///     Colección de listas de tablas.
-        /// </summary>
-        private readonly List<Table> _tables;
-
-        /// <summary>
         ///     Nombre de la tabla activa
         /// </summary>
         private String _nameTable;
 
+        /// <summary>
+        ///     Colección de listas de tablas.
+        /// </summary>
+        private List<Table> _tables;
+
         #endregion
 
-        #region Declaración de contructores.
+        #region [Constructors]
 
         /// <summary>
         ///     Inicializa el esquema de la base de datos.
@@ -57,13 +58,16 @@ namespace SimpleDataMapper.Schema
                 _tables = new List<Table> {LoadTable(sNameTable)};
             }
             else
-                LoadSchema();
+            {
+              LoadSchema();  
+            }
+                
             _conection.DbClose();
         }
 
         #endregion
 
-        #region Métodos públicos.
+        #region [Public Methods]
 
         /// <summary>
         ///     Obtiene el objeto tabla (Columnas, primary key, valores por defecto, etc)
@@ -77,7 +81,7 @@ namespace SimpleDataMapper.Schema
 
         #endregion
 
-        #region Métodos privados.
+        #region [Private Methods].
 
         /// <summary>
         ///     Inicializa los campos PrimaryKey de la tabla.
@@ -99,18 +103,14 @@ namespace SimpleDataMapper.Schema
                                 AND d.tablename    = '{0}' 
                                 AND indisprimary", table.NameTable);
 
-                String campo;
-
-                DataSet dtPrimaryKeys = _conection.InitDataAdapter(sSql);
-                DataTable dtTables = dtPrimaryKeys.Tables[0];
+                var dtPrimaryKeys = _conection.InitDataAdapter(sSql);
+                var dtTables = dtPrimaryKeys.Tables[0];
                 //Almacenamos las primaryKey de las tablas.
                 foreach (DataRow drKeys in dtTables.Rows)
                 {
-                    campo = drKeys["attname"].ToString().Trim();
+                    var campo = drKeys["attname"].ToString().Trim();
                     //Busca la columna y le indica que es primaryKey del objeto ClsTable.
-                    Column oColumn =
-                        table.ColColums.Find(oCol => oCol.NameColumn == campo
-                            );
+                    var oColumn = table.ColColums.Find(oCol => oCol.NameColumn == campo);
                     if (oColumn != null)
                     {
                         oColumn.PrimaryKey = true;
@@ -137,21 +137,18 @@ namespace SimpleDataMapper.Schema
         //todo:Por aquí. Este sólo debe cargar la estructura de la tabla. Para cargar los demás esquemas, se debería hacer desde otra clase que cargaría todas las tablas.
         private void LoadSchema()
         {
-            String[] restriction;
-
-            oTables = new List<Table>();
+            _tables = new List<Table>();
             try
             {
-                DataTable dtShema;
                 //Para ver información de las diferentes colecciones de datos devueltas por el método GetSchema:
                 // http://msdn2.microsoft.com/es-es/library/ms254969(VS.80).aspx
                 // http://msdn2.microsoft.com/es-es/library/ms254501(VS.80).aspx
 
                 //Obtenemos todas las tablas de base datos.             
-                restriction = new[] {null, "public", null, "BASE TABLE"};
 
                 //dtShema = this.oConection.DBConnection.GetSchema("Tables", restriction);
-                dtShema = _conection.DbConnection.GetSchema("Tables", new[] {null, "public", null, "BASE TABLE"});
+                var dtShema = _conection.DbConnection.GetSchema("Tables",
+                    new[] {null, "public", null, "BASE TABLE"});
                 foreach (DataRow rowSchema in dtShema.Rows)
                 {
                     foreach (DataColumn columsSchema in dtShema.Columns)
@@ -164,7 +161,7 @@ namespace SimpleDataMapper.Schema
                             case "table_name":
                                 //Almacenamos el nombre de la tabla en una variable para poder almacenarlo en el hashtable.
                                 _nameTable = rowSchema[columsSchema].ToString();
-                                oTables.Add(LoadTable(_nameTable));
+                                _tables.Add(LoadTable(_nameTable));
                                 break;
                         }
                     }
@@ -184,11 +181,10 @@ namespace SimpleDataMapper.Schema
         /// <returns>Devuelve un objeto del tipo ClsTable.</returns>
         private Table LoadTable(String sNombreTable)
         {
-            var oTable = new Table(_nameTable, new List<string>(), new List<Column>());
-            DataTable dtTable;
+            var table = new Table(_nameTable, new List<string>(), new List<Column>());
             try
             {
-                dtTable = _conection.DbConnection.GetSchema("Columns", new[] {null, null, sNombreTable, null});
+                var dtTable = _conection.DbConnection.GetSchema("Columns", new[] {null, null, sNombreTable, null});
                 //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
                 foreach (DataRow row in dtTable.Rows)
                 {
@@ -221,17 +217,17 @@ namespace SimpleDataMapper.Schema
                                     break;
                             }
                         }
-                        oTable.ColColums.Add(oColumn);
+                        table.ColColums.Add(oColumn);
                     }
                 }
-                LoadPrimaryKey(oTable);
+                LoadPrimaryKey(table);
             }
             catch (Exception ex)
             {
                 ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + _nameTable,
                     "LoadTable overloads1");
             }
-            return oTable;
+            return table;
         }
 
         #endregion
