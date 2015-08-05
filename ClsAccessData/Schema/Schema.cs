@@ -7,24 +7,24 @@ using SimpleDataMapper.utilities;
 namespace SimpleDataMapper.Schema
 {
     //Todo:25/01/2012. Obtener el esquema y que se quede cargo en memoria
-    internal class ClsSchema : ClsDisposable
+    internal class Schema : Disposable
     {
         #region Declaración de campos
 
         /// <summary>
         ///     Objeto que almacena la conexión de la base de datos.
         /// </summary>
-        private readonly ClsConnection oConection;
+        private readonly ClsConnection _conection;
 
         /// <summary>
         ///     Colección de listas de tablas.
         /// </summary>
-        private List<ClsTable> oTables;
+        private List<Table> _tables;
 
         /// <summary>
         ///     Nombre de la tabla activa
         /// </summary>
-        private String sNameTable;
+        private String _nameTable;
 
         #endregion
 
@@ -33,8 +33,8 @@ namespace SimpleDataMapper.Schema
         /// <summary>
         ///     Inicializa el esquema de la base de datos.
         /// </summary>
-        /// <param name="oConection">Objeto que contiene la conexión a la base de datos.</param>
-        internal ClsSchema(ClsConnection oConection) : this("", oConection)
+        /// <param name="connection">Objeto que contiene la conexión a la base de datos.</param>
+        internal Schema(ClsConnection connection) : this("", connection)
         {
         }
 
@@ -43,23 +43,22 @@ namespace SimpleDataMapper.Schema
         /// </summary>
         /// <param name="sNameTable">Nombre de la tabla a inicializar.</param>
         /// <param name="oConection">Objeto que contiene la conexión a la base de datos.</param>
-        internal ClsSchema(String sNameTable, ClsConnection oConection)
+        internal Schema(String sNameTable, ClsConnection oConection)
         {
-            this.oConection = oConection;
-            if (this.oConection.Status() == ConnectionState.Closed)
+            _conection = oConection;
+            if (_conection.Status() == ConnectionState.Closed)
             {
-                this.oConection.DbOpen();
+                _conection.DbOpen();
             }
-            this.sNameTable = sNameTable;
+            _nameTable = sNameTable;
             //Cargamos el esquema o la tabla.
-            if (!String.IsNullOrEmpty(this.sNameTable))
+            if (!string.IsNullOrWhiteSpace(_nameTable))
             {
-                oTables = new List<ClsTable>();
-                oTables.Add(LoadTable(sNameTable));
+                _tables = new List<Table> {LoadTable(sNameTable)};
             }
             else
                 LoadSchema();
-            this.oConection.DbClose();
+            _conection.DbClose();
         }
 
         #endregion
@@ -69,12 +68,11 @@ namespace SimpleDataMapper.Schema
         /// <summary>
         ///     Obtiene el objeto tabla (Columnas, primary key, valores por defecto, etc)
         /// </summary>
-        /// <param name="sNameTable">Nombre de la tabla.</param>
+        /// <param name="nameTable">Nombre de la tabla.</param>
         /// <returns>Devuelve un Objeto ClsTable</returns>
-        internal ClsTable GetTable(String sNameTable)
+        internal Table GetTable(String nameTable)
         {
-            return oTables.Find(delegate(ClsTable oFindTable) { return oFindTable.SNameTable == this.sNameTable; }
-                );
+            return _tables.Find(oFindTable => oFindTable.NameTable == _nameTable);
         }
 
         #endregion
@@ -84,13 +82,13 @@ namespace SimpleDataMapper.Schema
         /// <summary>
         ///     Inicializa los campos PrimaryKey de la tabla.
         /// </summary>
-        /// <param name="oTable">Objeto ClsTable que debe contener toda la información de la tabla.</param>
-        private void LoadPrimaryKey(ClsTable oTable)
+        /// <param name="table">Objeto ClsTable que debe contener toda la información de la tabla.</param>
+        private void LoadPrimaryKey(Table table)
         {
             try
             {
                 //Query que obtiene los campos keys de la tabla especificada
-                String sSql = "SELECT  c.attname " +
+                var sSql = "SELECT  c.attname " +
                               "FROM pg_index a, pg_class b, pg_attribute c, pg_indexes d, pg_constraint e " +
                               "WHERE d.indexname = e.conname " +
                               "AND  a.indrelid = b.oid " +
@@ -98,37 +96,37 @@ namespace SimpleDataMapper.Schema
                               "AND  c.attnum = any(a.indkey) " +
                               "AND  e.contype = 'p' " +
                               "AND  a.indrelid = e.conrelid " +
-                              "AND d.tablename    = '" + oTable.SNameTable + "'  " +
+                              "AND d.tablename    = '" + table.NameTable + "'  " +
                               "AND indisprimary";
 
-                String sCampo;
+                String campo;
 
-                DataSet dtPrimaryKeys = oConection.InitDataAdapter(sSql);
-                DataTable dtTables = dtPrimaryKeys.Tables[0];
+                var dtPrimaryKeys = _conection.InitDataAdapter(sSql);
+                var dtTables = dtPrimaryKeys.Tables[0];
                 //Almacenamos las primaryKey de las tablas.
                 foreach (DataRow drKeys in dtTables.Rows)
                 {
-                    sCampo = drKeys["attname"].ToString().Trim();
+                    campo = drKeys["attname"].ToString().Trim();
                     //Busca la columna y le indica que es primaryKey del objeto ClsTable.
-                    ClsColumn oColumn =
-                        oTable.ColColums.Find(delegate(ClsColumn oCol) { return oCol.NameColumn == sCampo; }
+                    Column oColumn =
+                        table.ColColums.Find(oCol => oCol.NameColumn == campo
                             );
                     if (oColumn != null)
                     {
                         oColumn.PrimaryKey = true;
-                        oTable.ColPrimaryKey.Add(oColumn.NameColumn);
+                        table.ColPrimaryKey.Add(oColumn.NameColumn);
                     }
                     else
                     {
                         ClsTraccer.RunException(
-                            "Error al obtener las primary keys de la tabla " + oTable.SNameTable + " - " +
+                            "Error al obtener las primary keys de la tabla " + table.NameTable + " - " +
                             drKeys["attname"].ToString().Trim(), "GetPrimaryKey");
                     }
                 }
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al obtener las primary keys de la tabla " + oTable.SNameTable,
+                ClsTraccer.RunException(ex, "Error al obtener las primary keys de la tabla " + table.NameTable,
                     "GetPrimaryKey");
             }
         }
@@ -141,7 +139,7 @@ namespace SimpleDataMapper.Schema
         {
             String[] restriction;
 
-            oTables = new List<ClsTable>();
+            oTables = new List<Table>();
             try
             {
                 DataTable dtShema;
@@ -153,7 +151,7 @@ namespace SimpleDataMapper.Schema
                 restriction = new[] {null, "public", null, "BASE TABLE"};
 
                 //dtShema = this.oConection.DBConnection.GetSchema("Tables", restriction);
-                dtShema = oConection.DbConnection.GetSchema("Tables", new[] {null, "public", null, "BASE TABLE"});
+                dtShema = _conection.DbConnection.GetSchema("Tables", new[] {null, "public", null, "BASE TABLE"});
                 foreach (DataRow rowSchema in dtShema.Rows)
                 {
                     foreach (DataColumn columsSchema in dtShema.Columns)
@@ -165,8 +163,8 @@ namespace SimpleDataMapper.Schema
                         {
                             case "table_name":
                                 //Almacenamos el nombre de la tabla en una variable para poder almacenarlo en el hashtable.
-                                sNameTable = rowSchema[columsSchema].ToString();
-                                oTables.Add(LoadTable(sNameTable));
+                                _nameTable = rowSchema[columsSchema].ToString();
+                                oTables.Add(LoadTable(_nameTable));
                                 break;
                         }
                     }
@@ -174,7 +172,7 @@ namespace SimpleDataMapper.Schema
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + sNameTable,
+                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + _nameTable,
                     "LoadSchema overloads1");
             }
         }
@@ -184,17 +182,17 @@ namespace SimpleDataMapper.Schema
         /// </summary>
         /// <param name="sNombreTable">Nombre de la tabla.</param>
         /// <returns>Devuelve un objeto del tipo ClsTable.</returns>
-        private ClsTable LoadTable(String sNombreTable)
+        private Table LoadTable(String sNombreTable)
         {
-            var oTable = new ClsTable(sNameTable, new List<string>(), new List<ClsColumn>());
+            var oTable = new Table(_nameTable, new List<string>(), new List<Column>());
             DataTable dtTable;
             try
             {
-                dtTable = oConection.DbConnection.GetSchema("Columns", new[] {null, null, sNombreTable, null});
+                dtTable = _conection.DbConnection.GetSchema("Columns", new[] {null, null, sNombreTable, null});
                 //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
                 foreach (DataRow row in dtTable.Rows)
                 {
-                    using (var oColumn = new ClsColumn())
+                    using (var oColumn = new Column())
                     {
                         //recorre cada propiedad del campo 
                         foreach (DataColumn col in dtTable.Columns)
@@ -230,7 +228,7 @@ namespace SimpleDataMapper.Schema
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + sNameTable,
+                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + _nameTable,
                     "LoadTable overloads1");
             }
             return oTable;

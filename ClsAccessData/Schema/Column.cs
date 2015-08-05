@@ -6,7 +6,7 @@ namespace SimpleDataMapper.Schema
     /// <summary>
     ///     Almacena las información de cada columna de la tabla.
     /// </summary>
-    internal class ClsColumn : ClsDisposable
+    internal class Column : Disposable
     {
         #region "Declaración de campos de las clase."
 

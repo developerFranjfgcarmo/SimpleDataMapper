@@ -2,9 +2,9 @@ using System;
 
 namespace SimpleDataMapper.utilities
 {
-    internal abstract class ClsDisposable : IDisposable
+    internal abstract class Disposable : IDisposable
     {
-        private bool disposing;
+        private bool _disposing;
 
         /// <summary>
         ///     Método de IDisposable para desechar la clase.
@@ -22,23 +22,21 @@ namespace SimpleDataMapper.utilities
         ///     dicha lógica una vez y evita que el GC tenga que
         ///     llamar al destructor de clase.
         /// </summary>
-        /// <param name=” bool”></param>
-        protected virtual void Dispose(bool b)
+        /// <param name="dispose"></param>
+        protected virtual void Dispose(bool dispose)
         {
             // Si no se esta destruyendo ya…
-            if (!disposing)
-            {
-                // La marco como desechada ó desechandose,
-                // de forma que no se puede ejecutar este código
-                // dos veces.
-                disposing = true;
+            if (_disposing) return;
+            // La marco como desechada ó desechandose,
+            // de forma que no se puede ejecutar este código
+            // dos veces.
+            _disposing = dispose;
 
-                // Indico al GC que no llame al destructor
-                // de esta clase al recolectarla.
-                GC.SuppressFinalize(this);
+            // Indico al GC que no llame al destructor
+            // de esta clase al recolectarla.
+            GC.SuppressFinalize(this);
 
-                // … libero los recursos… 
-            }
+            // … libero los recursos… 
         }
 
         /// <summary>
@@ -47,18 +45,11 @@ namespace SimpleDataMapper.utilities
         ///     el GC llamará al destructor, que tambén ejecuta la lógica
         ///     anterior para liberar los recursos.
         /// </summary>
-        ~ClsDisposable()
+        ~Disposable()
         {
             // Llamo al método que contiene la lógica
             // para liberar los recursos de esta clase.
             Dispose(true);
         }
-
-        internal enum Estado
-        {
-            Delete,
-            Update,
-            Insert
-        };
     }
 }

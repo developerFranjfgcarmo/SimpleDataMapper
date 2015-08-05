@@ -13,7 +13,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
     /// <summary>
     ///     Esta clase almacena todas las propiedades y campos de una clase.
     /// </summary>
-    internal class ClsObjectClass : ClsDisposable
+    internal class ClsObjectClass : Disposable
     {
         #region Declaración de campos.
 

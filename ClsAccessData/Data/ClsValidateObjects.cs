@@ -9,7 +9,7 @@ using SimpleDataMapper.utilities;
 
 namespace SimpleDataMapper.Data
 {
-    internal class ClsValidateObjects : ClsDisposable
+    internal class ClsValidateObjects : Disposable
     {
         #region Declaración de campos.
 
@@ -52,14 +52,14 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Colección de tabla a actualizar.
         /// </summary>
-        private Dictionary<String, ClsSchema> myColTables;
+        private Dictionary<String, Schema> myColTables;
 
         /// <summary>
         ///     Almacena la lista de campos de la tabla, los cuales coinciden con la clase. El resto de campos serán tratados por
         ///     la base de datos.
         ///     Estos campos serán posteriormente utilizados para realizar las operaciones de DML.
         /// </summary>
-        private Dictionary<String, ClsTable> myValidateTables;
+        private Dictionary<String, Table> myValidateTables;
 
         /// <summary>
         ///     Objeto que contiene la Conexión a la base de datos.
@@ -98,8 +98,8 @@ namespace SimpleDataMapper.Data
                 //Inicializamos las propiedades y los campos del objeto de la clase pasada. Al objeto dictionary le ponemos como clave principal en nombre de la tabla
                 var myObjectClass = new ClsObjectClass(myColObjects[i]);
                 this.myColObjects.Add(myObjectClass.STableName, myObjectClass);
-                var myObjectTable = new ClsSchema(myObjectClass.STableName, this.oConnection);
-                myColTables = new Dictionary<string, ClsSchema>();
+                var myObjectTable = new Schema(myObjectClass.STableName, this.oConnection);
+                myColTables = new Dictionary<string, Schema>();
                 myColTables.Add(myObjectClass.STableName, myObjectTable);
                 ColummnsValidate();
             }
@@ -113,15 +113,15 @@ namespace SimpleDataMapper.Data
         {
             foreach (var myCol in MyColObjects)
             {
-                myValidateTables = new Dictionary<String, ClsTable>();
+                myValidateTables = new Dictionary<String, Table>();
                 List<String> myValidatePk = null;
-                var myValidateColumns = new List<ClsColumn>();
+                var myValidateColumns = new List<Column>();
                 int iCountPK = 0;
-                ClsSchema oSchema;
+                Schema oSchema;
                 //Cargamos el objeto ClsShema, el cual contiene todas las colecciones de tablas.
                 myColTables.TryGetValue(myCol.Key, out oSchema);
                 //Inicializamos el objeto ClsTable, el cual contiene las propiedades de la tabla.
-                ClsTable oTable = oSchema.GetTable(myCol.Key);
+                Table oTable = oSchema.GetTable(myCol.Key);
                 if (oSchema != null)
                 {
                     //Obtenemos las colecciones de PrimaryKey de la tabla
@@ -137,7 +137,7 @@ namespace SimpleDataMapper.Data
                         if (oTable.ThereIsColumn(myMember.SField))
                         {
                             //Obtiene la columna de la tabla y la añade a la colección.
-                            ClsColumn myColumn = oTable.GetColumn(myMember.SField);
+                            Column myColumn = oTable.GetColumn(myMember.SField);
                             if (myColumn != null)
                                 myValidateColumns.Add(myColumn);
                         }
@@ -149,13 +149,13 @@ namespace SimpleDataMapper.Data
                         ToString());
                 //Si la columna existe se añade al objeto tabla.
                 if (myValidateColumns != null)
-                    myValidateTables.Add(myCol.Key, new ClsTable(myCol.Key, myValidatePk, myValidateColumns));
+                    myValidateTables.Add(myCol.Key, new Table(myCol.Key, myValidatePk, myValidateColumns));
             }
             //Una Recorrido la colección de tabla
             myColTables = null;
         }
 
-        private String GetValueObject(ClsColumn oColumn, Object sValue)
+        private String GetValueObject(Column oColumn, Object sValue)
         {
             if (sValue == null)
             {
@@ -178,7 +178,7 @@ namespace SimpleDataMapper.Data
         /// <param name="oColumn">Objeto ClsColumn, contiene toda la información sobre la columna de la tabla</param>
         /// <param name="sValue">Valor para el campo</param>
         /// <returns>Devuelve el valor formateado.</returns>
-        private String TypeData(ClsColumn oColumn, String sValue)
+        private String TypeData(Column oColumn, String sValue)
         {
             String sComilla = "";
             switch (oColumn.DataType)
@@ -262,7 +262,7 @@ namespace SimpleDataMapper.Data
             String sWhere = "";
             foreach (String sPK in myValidateTables[sNameTable].ColPrimaryKey)
             {
-                ClsColumn myColumn = myValidateTables[sNameTable].GetColumn(sPK);
+                Column myColumn = myValidateTables[sNameTable].GetColumn(sPK);
                 if (!String.IsNullOrEmpty(sWhere)) sWhere += " AND ";
                 sWhere += sPK + " = " + GetValueObject(myColumn, objCls[myColumn.NameColumn]);
             }
@@ -277,7 +277,7 @@ namespace SimpleDataMapper.Data
             if (obj != null)
                 objCls.MyObject = obj;
 
-            foreach (ClsColumn myColumn in myValidateTables[objCls.STableName].ColColums)
+            foreach (Column myColumn in myValidateTables[objCls.STableName].ColColums)
             {
                 //Recoremos la colección de objetos
                 switch (eQueryType)
