@@ -19,7 +19,7 @@ namespace SimpleDataMapper.Schema
         /// <summary>
         ///     Colección de listas de tablas.
         /// </summary>
-        private List<Table> _tables;
+        private readonly List<Table> _tables;
 
         /// <summary>
         ///     Nombre de la tabla activa
@@ -88,21 +88,21 @@ namespace SimpleDataMapper.Schema
             try
             {
                 //Query que obtiene los campos keys de la tabla especificada
-                var sSql = "SELECT  c.attname " +
-                              "FROM pg_index a, pg_class b, pg_attribute c, pg_indexes d, pg_constraint e " +
-                              "WHERE d.indexname = e.conname " +
-                              "AND  a.indrelid = b.oid " +
-                              "AND  c.attrelid = b.oid " +
-                              "AND  c.attnum = any(a.indkey) " +
-                              "AND  e.contype = 'p' " +
-                              "AND  a.indrelid = e.conrelid " +
-                              "AND d.tablename    = '" + table.NameTable + "'  " +
-                              "AND indisprimary";
+                string sSql = string.Format(@"SELECT  c.attname 
+                              FROM pg_index a, pg_class b, pg_attribute c, pg_indexes d, pg_constraint e 
+                              WHERE d.indexname = e.conname 
+                                AND  a.indrelid = b.oid 
+                                AND c.attrelid = b.oid 
+                                AND  c.attnum = any(a.indkey) 
+                                AND  e.contype = 'p' 
+                                AND  a.indrelid = e.conrelid 
+                                AND d.tablename    = '{0}' 
+                                AND indisprimary", table.NameTable);
 
                 String campo;
 
-                var dtPrimaryKeys = _conection.InitDataAdapter(sSql);
-                var dtTables = dtPrimaryKeys.Tables[0];
+                DataSet dtPrimaryKeys = _conection.InitDataAdapter(sSql);
+                DataTable dtTables = dtPrimaryKeys.Tables[0];
                 //Almacenamos las primaryKey de las tablas.
                 foreach (DataRow drKeys in dtTables.Rows)
                 {

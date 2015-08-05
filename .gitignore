@@ -4,3 +4,16 @@ ClsAccessData/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC
 Tareas/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
 Tareas/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
 Tareas/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+packages/Npgsql.2.2.5/Npgsql.2.2.5.nupkg
+packages/Npgsql.2.2.5/lib/net20/Npgsql.xml
+packages/Npgsql.2.2.5/lib/net35/Npgsql.xml
+packages/Npgsql.2.2.5/lib/net40/Npgsql.xml
+packages/Npgsql.2.2.5/lib/net45/Npgsql.xml
+packages/log4net.2.0.3/lib/net10-full/log4net.xml
+packages/log4net.2.0.3/lib/net11-full/log4net.xml
+packages/log4net.2.0.3/lib/net20-full/log4net.xml
+packages/log4net.2.0.3/lib/net35-client/log4net.xml
+packages/log4net.2.0.3/lib/net35-full/log4net.xml
+packages/log4net.2.0.3/lib/net40-client/log4net.xml
+packages/log4net.2.0.3/lib/net40-full/log4net.xml
+packages/log4net.2.0.3/log4net.2.0.3.nupkg
