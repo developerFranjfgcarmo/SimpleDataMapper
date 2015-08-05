@@ -1,7 +1,7 @@
 ﻿using System;
-using ClsAccessData.utilities;
+using SimpleDataMapper.utilities;
 
-namespace ClsAccessData.Controller.ClsMemberClass
+namespace SimpleDataMapper.Controller.ClsMemberClass
 {
     /// <summary>
     ///     Almacena el nombre de una propiedad de una clase.

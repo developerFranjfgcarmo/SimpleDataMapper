@@ -1,7 +1,7 @@
 ﻿using System;
-using ClsAccessData.utilities;
+using SimpleDataMapper.utilities;
 
-namespace ClsAccessData.Schema
+namespace SimpleDataMapper.Schema
 {
     /// <summary>
     ///     Almacena las información de cada columna de la tabla.

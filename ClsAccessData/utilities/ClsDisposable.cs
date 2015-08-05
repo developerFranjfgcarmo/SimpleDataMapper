@@ -1,6 +1,6 @@
 using System;
 
-namespace ClsAccessData.utilities
+namespace SimpleDataMapper.utilities
 {
     internal abstract class ClsDisposable : IDisposable
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace ClsAccessData
+namespace SimpleDataMapper
 {
     internal class ClsGeneral
     {

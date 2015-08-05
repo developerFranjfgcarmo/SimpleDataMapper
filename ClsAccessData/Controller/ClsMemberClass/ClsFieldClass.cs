@@ -1,7 +1,7 @@
 ﻿using System;
-using ClsAccessData.utilities;
+using SimpleDataMapper.utilities;
 
-namespace ClsAccessData.Controller.ClsMemberClass
+namespace SimpleDataMapper.Controller.ClsMemberClass
 {
     /// <summary>
     ///     Esta clase almacena los campos y las propiedades de la clase.

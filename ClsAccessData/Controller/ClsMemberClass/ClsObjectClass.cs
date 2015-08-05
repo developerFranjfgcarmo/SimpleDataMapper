@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using ClsAccessData.utilities;
+using SimpleDataMapper.utilities;
 
-namespace ClsAccessData.Controller.ClsMemberClass
+namespace SimpleDataMapper.Controller.ClsMemberClass
 {
     //En el caso que se haga una iteración sobre un Objeto, evitar volver a cargarlo, en este caso sólo debería realizar el insert.
     //todo:limpiar la collección de oListPropertiesClass.

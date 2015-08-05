@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Data;
 using System.Reflection;
-using ClsAccessData.Connection;
 
 //TODO: SEGUIR MIRANDO LOS COMENTARIOS DE LOS DATOS Y MÉTODOS MIEMBROS DE LA CLASE.seguir mirando
 //TODO:MIRAR LA CONSTRUCCIÓN DE LA QUERY.en proceso
@@ -15,8 +14,9 @@ using ClsAccessData.Connection;
 
 
 //Todo. Controlar errores de unique, contraint, triggers.
+using SimpleDataMapper.Connection;
 
-namespace ClsAccessData
+namespace SimpleDataMapper
 {
     /// <summary>
     ///     adfsdf

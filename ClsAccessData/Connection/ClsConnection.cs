@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using Npgsql;
 
-namespace ClsAccessData.Connection
+namespace SimpleDataMapper.Connection
 {
     /// <summary>
     /// </summary>

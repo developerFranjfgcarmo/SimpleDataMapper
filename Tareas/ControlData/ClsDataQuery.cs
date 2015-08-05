@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Windows.Forms;
-using ClsAccessData.Connection;
+using SimpleDataMapper.Connection;
 
 namespace Tareas.ControlData
 {

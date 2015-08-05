@@ -8,8 +8,8 @@
     <ProjectGuid>{423ED94E-424B-4AEC-A2B5-6144C8668B08}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClsAccessData</RootNamespace>
-    <AssemblyName>ClsAccessData</AssemblyName>
+    <RootNamespace>SimpleDataMapper</RootNamespace>
+    <AssemblyName>SimpleDataMapper</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>

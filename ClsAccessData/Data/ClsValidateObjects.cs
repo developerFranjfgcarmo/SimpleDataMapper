@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using ClsAccessData.Connection;
-using ClsAccessData.Controller.ClsMemberClass;
-using ClsAccessData.Schema;
-/*SELECT nextval('s_idprueba'); 
+﻿/*SELECT nextval('s_idprueba'); 
 SELECT currval('s_idprueba'); */
-using ClsAccessData.utilities;
+using System;
+using System.Collections.Generic;
+using SimpleDataMapper.Connection;
+using SimpleDataMapper.Controller.ClsMemberClass;
+using SimpleDataMapper.Schema;
+using SimpleDataMapper.utilities;
 
-namespace ClsAccessData.Data
+namespace SimpleDataMapper.Data
 {
     internal class ClsValidateObjects : ClsDisposable
     {

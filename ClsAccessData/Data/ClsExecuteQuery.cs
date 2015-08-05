@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using ClsAccessData.Connection;
 using Npgsql;
 
 //Todo: Mirar a crear otro método sobrecargado de la Select en el que se pase el Objeto sWhere y el Objeto a devolver.
 //Todo: Mirar a crear una sobre carga de los métodos update, delete, in-
+using SimpleDataMapper.Connection;
 
-namespace ClsAccessData.Data
+namespace SimpleDataMapper.Data
 {
     /// <summary>
     ///     Clase que realiza todas las llamadas instrucciónes de DML sobre la base de datos.

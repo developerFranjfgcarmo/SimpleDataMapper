@@ -29,7 +29,7 @@ TraceSwitch (Clase)Proporciona un modificador multinivel para controlar la gener
 //Implementar un método que permite realizar trazas.
 //En caso de error recuperar la pila de llamada
 
-namespace ClsAccessData
+namespace SimpleDataMapper
 {
     //Todo: Revisar esta función de traza, no debería mostrar mensajes muy descriptivos.
     //Todo: Mirar en la documentación MSDN, como tracear.

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using  ClsAccessData.Connection;
-using ClsAccessData.Data;
-using ClsAccessData;
+using SimpleDataMapper;
+using SimpleDataMapper.Connection;
+using SimpleDataMapper.Data;
 
 namespace Tareas
 {

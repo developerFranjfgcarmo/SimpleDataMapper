@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClsAccessData.utilities;
+using SimpleDataMapper.utilities;
 
-namespace ClsAccessData.Schema
+namespace SimpleDataMapper.Schema
 {
     internal class ClsTable : ClsDisposable
     {

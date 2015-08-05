@@ -24,3 +24,13 @@ F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\bin\Debug\policy.2.0.Npgsql.config
 F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\obj\Debug\ClsAccessData.csprojResolveAssemblyReference.cache
 F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\obj\Debug\ClsAccessData.dll
 F:\6 Pruebas(Tareas)\Tareas\ClsAccessData\obj\Debug\ClsAccessData.pdb
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\ClsAccessData.dll
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\ClsAccessData.pdb
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\ClsAccessData.xml
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\Npgsql.dll
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\Mono.Security.dll
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\Npgsql.pdb
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\Npgsql.xml
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\obj\Debug\ClsAccessData.csprojResolveAssemblyReference.cache
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\obj\Debug\ClsAccessData.dll
+C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\obj\Debug\ClsAccessData.pdb

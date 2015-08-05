@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using SimpleDataMapper;
+using SimpleDataMapper.Connection;
+using SimpleDataMapper.Data;
 using Tareas.ComunClass;
 using Tareas.ControlData;
 using Tareas.ClsTablas;
-using ClsAccessData;
 using System.Collections;
 
 namespace Tareas
@@ -171,11 +173,11 @@ namespace Tareas
             bool bExit = false;
             try
             {
-                Program.oCon = new ClsAccessData.Connection.ClsConnection(this.txtHost.Text, this.txtDataBase.Text,
+                Program.oCon = new ClsConnection(this.txtHost.Text, this.txtDataBase.Text,
                                                           this.txtUserId.Text, this.txtPassword.Text);
             
                 Program.oCon.DbOpen();
-                Program.clsStruct = new ClsAccessData.ClsStructure(Program.oCon);
+                Program.clsStruct = new ClsStructure(Program.oCon);
                 bExit = true;
             }
             catch (Exception ex)
@@ -258,7 +260,7 @@ namespace Tareas
                 listPrueba.Add(p);
             }
 
-            Program.oExe = new ClsAccessData.Data.ClsExecuteQuery(Program.oCon );
+            Program.oExe = new ClsExecuteQuery(Program.oCon );
             Program.oExe.Insert();
             //Program.oExe.Insert();
         }
@@ -284,7 +286,7 @@ namespace Tareas
                 listPrueba1.Add(p4);
                 listPrueba1.Add(p5);*/
                 /**/
-                Program.oExe = new ClsAccessData.Data.ClsExecuteQuery(Program.oCon);
+                Program.oExe = new ClsExecuteQuery(Program.oCon);
             listPrueba1 = Program.oExe.SelectDataSet(p);
             //listPrueba1 = Program.oExe.Select(p);
 

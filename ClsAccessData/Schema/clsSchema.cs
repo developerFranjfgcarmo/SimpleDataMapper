@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using ClsAccessData.Connection;
-using ClsAccessData.utilities;
+using SimpleDataMapper.Connection;
+using SimpleDataMapper.utilities;
 
-namespace ClsAccessData.Schema
+namespace SimpleDataMapper.Schema
 {
     //Todo:25/01/2012. Obtener el esquema y que se quede cargo en memoria
     internal class ClsSchema : ClsDisposable
