@@ -147,7 +147,7 @@ namespace SimpleDataMapper.DataBase
                 //Obtenemos todas las tablas de base datos.             
 
                 //dtShema = this.oConection.DBConnection.GetSchema("Tables", restriction);
-                var dtShema = _conection.DbConnection.GetSchema("Tables",
+                var dtShema = _conection.Connection.GetSchema("Tables",
                     new[] {null, "public", null, "BASE TABLE"});
                 foreach (DataRow rowSchema in dtShema.Rows)
                 {
@@ -177,14 +177,14 @@ namespace SimpleDataMapper.DataBase
         /// <summary>
         ///     Carga la estructura de una tabla(Columnas).
         /// </summary>
-        /// <param name="sNombreTable">Nombre de la tabla.</param>
+        /// <param name="nameTable">Nombre de la tabla.</param>
         /// <returns>Devuelve un objeto del tipo ClsTable.</returns>
-        private Table LoadTable(String sNombreTable)
+        private Table LoadTable(String nameTable)
         {
             var table = new Table(_nameTable, new List<string>(), new List<Column>());
             try
             {
-                var dtTable = _conection.DbConnection.GetSchema("Columns", new[] {null, null, sNombreTable, null});
+                var dtTable = _conection.Connection.GetSchema("Columns", new[] {null, null, nameTable, null});
                 //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
                 foreach (DataRow row in dtTable.Rows)
                 {

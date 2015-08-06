@@ -99,7 +99,7 @@ namespace SimpleDataMapper.Data
                 {
                     //Obtenemos las colecciones de PrimaryKey de la tabla
                     myValidatePk = oSchema.GetTable(myCol.Key).ColPrimaryKey;
-                    foreach (FieldClass myMember in myCol.Value.MembersOfClass)
+                    foreach (FieldOfClass myMember in myCol.Value.MembersOfClass)
                     {
                         //todo:Mirar si es necesario implementar que valide las primary key de la tabla y del objeto.
                         if (oTable.IsPrimaryKeys(myMember.Field))

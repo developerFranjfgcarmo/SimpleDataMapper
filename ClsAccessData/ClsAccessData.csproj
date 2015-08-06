@@ -81,7 +81,7 @@
     <Compile Include="utilities\Disposable.cs" />
     <Compile Include="ClsGeneral.cs" />
     <Compile Include="Controller\ClsMemberClass\ObjectClass.cs" />
-    <Compile Include="Controller\ClsMemberClass\FieldClass.cs" />
+    <Compile Include="Controller\ClsMemberClass\FieldOfClass.cs" />
     <Compile Include="Controller\ClsMemberClass\PropertyClass.cs" />
     <Compile Include="ClsStructure.cs" />
     <Compile Include="ClsTraccer.cs" />

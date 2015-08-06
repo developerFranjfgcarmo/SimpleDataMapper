@@ -8,14 +8,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
     /// </summary>
     internal class PropertyClass : Disposable
     {
-        #region Declaración de campos.
-
-        private readonly Boolean _bCanRead;
-        private readonly Boolean _bCanWrite;
-
-        #endregion
-
-        #region Declaración del constructor.
+       #region [Constructor].
 
         /// <summary>
         ///     Inicializa el objeto ClsPropertyClass.
@@ -25,35 +18,29 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
         /// <param name="bCanWrite">Marca si la propiedad se puede sobreescribir.</param>
         internal PropertyClass(String sProperty, Boolean bCanRead, Boolean bCanWrite)
         {
-            SProperty = sProperty;
-            _bCanRead = bCanRead;
-            _bCanWrite = bCanWrite;
+            Property = sProperty;
+            CanRead = bCanRead;
+            CanWrite = bCanWrite;
         }
 
         #endregion
 
-        #region Declaración de las propiedades.
+        #region [Properties]
 
         /// <summary>
         ///     Carga o devuelve el nombre de la propiedad.
         /// </summary>
-        internal string SProperty { get; set; }
+        internal string Property { get; set; }
 
         /// <summary>
         ///     Indica si la propiedad se puede cargar.
         /// </summary>
-        internal Boolean BCanWrite
-        {
-            get { return _bCanWrite; }
-        }
+        internal Boolean CanWrite{ get; private set; }      
 
         /// <summary>
         ///     Indica si la propiedad se puede leer.
         /// </summary>
-        internal Boolean BCanRead
-        {
-            get { return _bCanRead; }
-        }
+        internal Boolean CanRead { get; private set; }
 
         #endregion
     }

@@ -8,40 +8,10 @@
             <summary>
             </summary>
         </member>
-        <member name="F:SimpleDataMapper.Connection.ClsConnection._oConnection">
-            <summary>
-                Instancia de tipo SqlConnection que se conecta a la be de datos
-            </summary>
-        </member>
-        <member name="F:SimpleDataMapper.Connection.ClsConnection._sBd">
-            <summary>
-                Datos miembros para la conexión a la base datos.
-            </summary>
-        </member>
-        <member name="F:SimpleDataMapper.Connection.ClsConnection._sContrenaBd">
-            <summary>
-                Datos miembros para la conexión a la base datos.
-            </summary>
-        </member>
-        <member name="F:SimpleDataMapper.Connection.ClsConnection._sServidorDb">
-            <summary>
-                Datos miembros para la conexión a la base datos.
-            </summary>
-        </member>
-        <member name="F:SimpleDataMapper.Connection.ClsConnection._sUsuarioBd">
-            <summary>
-                Datos miembros para la conexión a la base datos.
-            </summary>
-        </member>
-        <member name="F:SimpleDataMapper.Connection.ClsConnection._oMiDataAdapter">
+        <member name="F:SimpleDataMapper.Connection.ClsConnection._miDataAdapter">
             <summary>
                 Representa un conjunto de comandos de datos y una conexión de base de
                 datos que se utilizan para rellenar un DataSet
-            </summary>
-        </member>
-        <member name="F:SimpleDataMapper.Connection.ClsConnection._oTransaccion">
-            <summary>
-                Representa una transacción de Transact-SQL que se realiza en una be de datos de SQL Server
             </summary>
         </member>
         <member name="M:SimpleDataMapper.Connection.ClsConnection.#ctor(System.String,System.String,System.String,System.String)">
@@ -69,22 +39,22 @@
                 Cierra la conexión a la base datos.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Connection.ClsConnection.DbBeginTransaction">
+        <member name="M:SimpleDataMapper.Connection.ClsConnection.BeginTransaction">
             <summary>
                 Comienza una transacción a la base datos.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Connection.ClsConnection.BdCommit">
+        <member name="M:SimpleDataMapper.Connection.ClsConnection.Commit">
             <summary>
                 Confirma la transacción actual a la base datos.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Connection.ClsConnection.BdRollBack">
+        <member name="M:SimpleDataMapper.Connection.ClsConnection.RollBack">
             <summary>
                 Cancela la transacción actual a la base datos.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Connection.ClsConnection.DbExecute(System.String)">
+        <member name="M:SimpleDataMapper.Connection.ClsConnection.Execute(System.String)">
             <summary>
                 Executa una instrucción DML (Insert, Delete, Update).
             </summary>
@@ -105,32 +75,32 @@
             <param name="sQuery">Instrucción Select.</param>
             <returns>Devuelve un objeto DataSet.</returns>
         </member>
-        <member name="P:SimpleDataMapper.Connection.ClsConnection.SServidorDb">
+        <member name="P:SimpleDataMapper.Connection.ClsConnection.Server">
             <summary>
                 Devuelve el servidor de la base de datos.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Connection.ClsConnection.SContrenaBd">
+        <member name="P:SimpleDataMapper.Connection.ClsConnection.Password">
             <summary>
                 Devuelve la contraseña a la base de datos.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Connection.ClsConnection.SBD">
+        <member name="P:SimpleDataMapper.Connection.ClsConnection.DataBase">
             <summary>
                 Devuelve en nombre de la base datos.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Connection.ClsConnection.SUsuarioBD">
+        <member name="P:SimpleDataMapper.Connection.ClsConnection.User">
             <summary>
                 Devuelve el usuario de la base datos.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Connection.ClsConnection.DBTransaccion">
+        <member name="P:SimpleDataMapper.Connection.ClsConnection.Transaccion">
             <summary>
                 Obtiene el objeto oTransaccion.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Connection.ClsConnection.DbConnection">
+        <member name="P:SimpleDataMapper.Connection.ClsConnection.Connection">
             <summary>
                 Obtiene el objeto oConnection.
             </summary>
@@ -179,7 +149,7 @@
             <summary>
                 Inserción de registros de la tabla.
             </summary>
-            <param name="myObject">
+            <param name="arrayObject">
                 Instancia de una clase o instancias de diferentes clase con la que se compone la instrucción de Insert para
                 realizar
                 las diferentes inserciones. Los miembros de la clase deben ser System.Nullable. Cada Objeto debe ser de una clase
@@ -191,7 +161,7 @@
             <summary>
                 Actualización de registros de la tabla.
             </summary>
-            <param name="obj">
+            <param name="listObject">
                 Instancia de una lista de objetos de una clase con la que se compone la instrucción de Update para realizar
                 las diferentes actualizaciones. Los miembros de la clase deben ser System.Nullable.
             </param>
@@ -200,7 +170,7 @@
             <summary>
                 Actualización de registros de la tabla.
             </summary>
-            <param name="obj">
+            <param name="arrayObject">
                 Instancia de una clase o  instancias de diferentes clase con la que se compone la instrucción de Update para
                 realizar
                 las diferentes actualizaciones. Los miembros de la clase deben ser System.Nullable. Cada Objeto debe ser de una
@@ -212,7 +182,7 @@
             <summary>
                 Elimina los registros de la tabla.
             </summary>
-            <param name="obj">
+            <param name="arrayObject">
                 Instancia de una clase o instacias de diferentes clases con la que se compone la instrucción DELETE para eliminar
                 los registros de cada tabla. Los miembros de la clase deben System.Nullable. Cada Objeto debe ser de una clase
                 diferente y se debe pasar en el
@@ -232,27 +202,33 @@
             <summary>
                 Obtiene el conjunto de resultados de una consulta Select en función del Objeto pasado.
             </summary>
-            <param name="myObject">Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto ArrayList.</param>
+            <param name="oneObject">
+                Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto
+                ArrayList.
+            </param>
             <returns>Devuelve un ArrayList del objeto pasado por parámetro.</returns>
         </member>
         <member name="M:SimpleDataMapper.Data.ClsExecuteQuery.SelectDataSet(System.Object)">
             <summary>
                 Obtiene el conjunto de resultados de una consulta Select en función del Objeto pasado.
             </summary>
-            <param name="myObject">Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto ArrayList.</param>
+            <param name="oneObject">
+                Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto
+                ArrayList.
+            </param>
             <returns>Devuelve un ArrayList del objeto pasado por parámetro.</returns>
         </member>
         <member name="M:SimpleDataMapper.Data.ClsExecuteQuery.IniParamDml(System.Object[])">
             <summary>
                 Inicializa el objeto para la instrucción DML.
             </summary>
-            <param name="myObject">Lista de Objetos para realizar la instrucción DML.</param>
+            <param name="arrayObject">Lista de Objetos para realizar la instrucción DML.</param>
         </member>
         <member name="M:SimpleDataMapper.Data.ClsExecuteQuery.IniParamDml(System.Collections.Generic.List{System.Object})">
             <summary>
                 Inicializa el objeto para la instrucción DML.
             </summary>
-            <param name="myObject">Lista de Objetos para realizar la instrucción DML.</param>
+            <param name="listObject">Lista de Objetos para realizar la instrucción DML.</param>
         </member>
         <member name="M:SimpleDataMapper.Data.ClsExecuteQuery.ExecuteQuery(SimpleDataMapper.Data.QueryType)">
             <summary>
@@ -369,7 +345,7 @@
             <param name="sValue">Valor para el campo</param>
             <returns>Devuelve el valor formateado.</returns>
         </member>
-        <member name="M:SimpleDataMapper.Data.ValidateObjects.GetWhere(System.String,SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass)">
+        <member name="M:SimpleDataMapper.Data.ValidateObjects.GetWhere(System.String,SimpleDataMapper.Controller.ClsMemberClass.ObjectClass)">
             <summary>
                 Obtenemos el Where para la tabla.
             </summary>
@@ -436,52 +412,45 @@
                 Devuelve el mismo valor o una cadena vacía("") si el valor es nulo.
             </returns>
         </member>
-        <member name="T:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass">
+        <member name="T:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass">
             <summary>
                 Esta clase almacena todas las propiedades y campos de una clase.
             </summary>
         </member>
-        <member name="F:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.Tablename">
+        <member name="F:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.Tablename">
             <summary>
                 Variable obligatoria, Se debe definir el nombre de la tabla sobre la cual se va a realizar la operación DML.
             </summary>
         </member>
-        <member name="F:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass._oListPropertiesClass">
+        <member name="F:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass._listPropertiesClass">
             <summary>
                 Lista de propiedades del objeto.
             </summary>
         </member>
-        <member name="F:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass._oType">
+        <member name="F:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass._type">
             <summary>
                 Representa al tipo de objeto (myObject).
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.#ctor(System.Object)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.#ctor(System.Object)">
             <summary>
                 Constructor de la clase ClsObjectClass
             </summary>
             <param name="myObject"></param>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.LoadMenbersClass">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.LoadMenbersClass">
             <summary>
                 Carga los campos y las propiedades de la clase.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.SetValue(System.Object,System.String)">
-            <summary>
-                Modifica el Valor de la propiedad de la clase
-            </summary>
-            <param name="value">Valor del campo de la propiedad</param>
-            <param name="sName">Nombre de la propiedad.</param>
-        </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.SetValue(System.Object,System.Int32)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.SetValue(System.Object,System.Int32)">
             <summary>
                 Modifica el Valor de la propiedad de la clase.
             </summary>
             <param name="value">Valor del campo de la propiedad.</param>
             <param name="index">Índice de la propiedad a modificar.</param>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.SetValue(System.Object,System.String,System.Int32)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.SetValue(System.Object,System.String,System.Int32)">
             <summary>
                 Modifica el Valor de la propiedad de la clase.
             </summary>
@@ -489,14 +458,14 @@
             <param name="sName">Nombre de la propiedad.</param>
             <param name="index">Índice de la propiedad a modificar.</param>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.GetValue(System.Int32)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.GetValue(System.Int32)">
             <summary>
                 Obtiene el valor de la propiedad de la clase.
             </summary>
             <param name="index">Índice de la propiedad.</param>
             <returns>Devuelve el valor de la propiedad</returns>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.GetValue(System.String,System.Int32)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.GetValue(System.String,System.Int32)">
             <summary>
                 Obtiene el valor de la propiedad de la clase.
             </summary>
@@ -504,82 +473,82 @@
             <param name="index">Índice de la propiedad.</param>
             <returns>Devuelve el valor de la propiedad</returns>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.FindElementPropertyClass(System.String)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.FindElementPropertyClass(System.String)">
             <summary>
                 Encuentra un elemento dentro del objeto list y se situa en este.
             </summary>
             <param name="sName">Nombre del objeto a buscar.</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.CreateInstance">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.CreateInstance">
             <summary>
                 Crea una nueva instancia del objeto.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.ThereIsField(System.String)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.ThereIsField(System.String)">
             <summary>
                 Comprueba si existe el campo en la clase.
             </summary>
             <param name="sName">Nombre del campo.</param>
             <returns>Devuelve true si existe el campo y false si no existe.</returns>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.MyObject">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.MyObject">
             <summary>
                 Propiedad que obtiene o devuelve la instancia del objeto.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.STableName">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.TableName">
             <summary>
                 Devuelve el nombre de la tabla.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.OMyMembersClass">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.MembersOfClass">
             <summary>
                 Devuelve la lista de campos o datos miembros de las clase.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.Item(System.Int32)">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.Item(System.Int32)">
             <summary>
                 Propiedad que lee o modifica los valores de las propiedades de la clase.
             </summary>
             <param name="index">Número del elemento a devolver.</param>
             <returns>Obtiene o almacena un valor en elemento indicado</returns>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsObjectClass.Item(System.String)">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ObjectClass.Item(System.String)">
             <summary>
                 Propiedad que lee o modifica la propiedad de la clase.
             </summary>
             <param name="sName">Nombre del elemento.</param>
             <returns>Obtiene o almacena un valor en elemento indicado</returns>
         </member>
-        <member name="T:SimpleDataMapper.Controller.ClsMemberClass.ClsFieldClass">
+        <member name="T:SimpleDataMapper.Controller.ClsMemberClass.FieldOfClass">
             <summary>
                 Esta clase almacena los campos y las propiedades de la clase.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsFieldClass.#ctor(System.String,SimpleDataMapper.Controller.ClsMemberClass.ClsPropertyClass)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.FieldOfClass.#ctor(System.String,SimpleDataMapper.Controller.ClsMemberClass.PropertyClass)">
             <summary>
                 Constructor de la clase.
             </summary>
             <param name="sField">Campo de la clase</param>
             <param name="sProperty">Objeto ClsPorpertyClass que almacenará la propiedad del campo.</param>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsFieldClass.SField">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.FieldOfClass.Field">
             <summary>
                 Carga o devuelve el valor del campo.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsFieldClass.Property">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.FieldOfClass.Property">
             <summary>
                 Carga o devuelve la propiedad del campo.
             </summary>
         </member>
-        <member name="T:SimpleDataMapper.Controller.ClsMemberClass.ClsPropertyClass">
+        <member name="T:SimpleDataMapper.Controller.ClsMemberClass.PropertyClass">
             <summary>
                 Almacena el nombre de una propiedad de una clase.
             </summary>
         </member>
-        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.ClsPropertyClass.#ctor(System.String,System.Boolean,System.Boolean)">
+        <member name="M:SimpleDataMapper.Controller.ClsMemberClass.PropertyClass.#ctor(System.String,System.Boolean,System.Boolean)">
             <summary>
                 Inicializa el objeto ClsPropertyClass.
             </summary>
@@ -587,17 +556,17 @@
             <param name="bCanRead">Marca si la propiedad se puede leer.</param>
             <param name="bCanWrite">Marca si la propiedad se puede sobreescribir.</param>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsPropertyClass.SProperty">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.PropertyClass.Property">
             <summary>
                 Carga o devuelve el nombre de la propiedad.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsPropertyClass.BCanWrite">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.PropertyClass.CanWrite">
             <summary>
                 Indica si la propiedad se puede cargar.
             </summary>
         </member>
-        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.ClsPropertyClass.BCanRead">
+        <member name="P:SimpleDataMapper.Controller.ClsMemberClass.PropertyClass.CanRead">
             <summary>
                 Indica si la propiedad se puede leer.
             </summary>
@@ -943,7 +912,7 @@
             <summary>
                 Carga la estructura de una tabla(Columnas).
             </summary>
-            <param name="sNombreTable">Nombre de la tabla.</param>
+            <param name="nameTable">Nombre de la tabla.</param>
             <returns>Devuelve un objeto del tipo ClsTable.</returns>
         </member>
         <member name="M:SimpleDataMapper.DataBase.Table.#ctor">

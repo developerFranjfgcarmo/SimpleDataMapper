@@ -1,11 +1,11 @@
-﻿using System;
+﻿//Todo: Mirar a crear otro método sobrecargado de la Select en el que se pase el Objeto sWhere y el Objeto a devolver.
+//Todo: Mirar a crear una sobre carga de los métodos update, delete, in-
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Npgsql;
-
-//Todo: Mirar a crear otro método sobrecargado de la Select en el que se pase el Objeto sWhere y el Objeto a devolver.
-//Todo: Mirar a crear una sobre carga de los métodos update, delete, in-
 using SimpleDataMapper.Connection;
 
 namespace SimpleDataMapper.Data
@@ -13,31 +13,29 @@ namespace SimpleDataMapper.Data
     /// <summary>
     ///     Clase que realiza todas las llamadas instrucciónes de DML sobre la base de datos.
     /// </summary>
-    public class ClsExecuteQuery
+    public class ExecuteQuery
     {
-        #region Declaracion de variables.
+        #region [Private Methods]
 
         /// <summary>
         ///     Almacena la conexión a la base de datos.
         /// </summary>
-        private readonly ClsConnection oCon;
-
-        /// <summary>
-        ///     Almacena una colección de objetos de la misma clase.
-        /// </summary>
-        private List<Object> listObject;
-
-        /// <summary>
-        ///     Valida el Objeto con la tabla correspondiente.
-        /// </summary>
-        private ValidateObjects myValidateObject;
+        private readonly ClsConnection _con;
 
         /// <summary>
         ///     Almacena una colección de objetos de diferentes clases pasados por parámetros.
         /// </summary>
-        private Object[] oColObject;
+        private Object[] _coumnlObject;
 
-        private Object objectWhere;
+        /// <summary>
+        ///     Almacena una colección de objetos de la misma clase.
+        /// </summary>
+        private List<Object> _listTables;
+
+        /// <summary>
+        ///     Valida el Objeto con la tabla correspondiente.
+        /// </summary>
+        private ValidateObjects _validateColumns;
 
         /// <summary>
         ///     Contiene la función delegado a la que tiene que apuntar para devolver la lista de resultados.
@@ -47,15 +45,15 @@ namespace SimpleDataMapper.Data
 
         #endregion
 
-        #region Declaración de Contructores.
+        #region [Constructor]
 
         /// <summary>
         ///     Constructor de la clase ClsExecuteQuery.
         /// </summary>
         /// <param name="oCon">Instancia al Objeto conexión de la base de datos.</param>
-        public ClsExecuteQuery(ClsConnection oCon)
+        public ExecuteQuery(ClsConnection oCon)
         {
-            this.oCon = oCon;
+            _con = oCon;
         }
 
         #endregion
@@ -65,108 +63,114 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Inserción de registros de la tabla.
         /// </summary>
-        /// <param name="myObject">
+        /// <param name="table">
         ///     Instancia de una lista de objetos de una clase con la que se compone la instrucción de Insert para realizar
         ///     las diferentes inserciones. Los miembros de la clase deben ser System.Nullable.
         /// </param>
-        public void Insert(List<Object> myObject)
+        public void Insert(List<Object> table)
         {
-            IniParamDml(myObject);
-            ExecuteQuery(QueryType.Insert);
+            IniParamDml(table);
+            Execute(QueryType.Insert);
         }
 
         /// <summary>
         ///     Inserción de registros de la tabla.
         /// </summary>
-        /// <param name="myObject">
+        /// <param name="arrayTables">
         ///     Instancia de una clase o instancias de diferentes clase con la que se compone la instrucción de Insert para
         ///     realizar
         ///     las diferentes inserciones. Los miembros de la clase deben ser System.Nullable. Cada Objeto debe ser de una clase
         ///     diferente y se debe pasar en el
         ///     orden en el que se desea realizar cada operación, se debe tener cuidado con las foreing Key de las tablas.
         /// </param>
-        public void Insert(params Object[] myObject)
+        public void Insert(params Object[] arrayTables)
         {
-            IniParamDml(myObject);
-            ExecuteQuery(QueryType.Insert);
+            IniParamDml(arrayTables);
+            Execute(QueryType.Insert);
         }
 
         /// <summary>
         ///     Actualización de registros de la tabla.
         /// </summary>
-        /// <param name="obj">
+        /// <param name="listTables">
         ///     Instancia de una lista de objetos de una clase con la que se compone la instrucción de Update para realizar
         ///     las diferentes actualizaciones. Los miembros de la clase deben ser System.Nullable.
         /// </param>
-        public void Update(List<Object> myObject)
+        public void Update(List<Object> listTables)
         {
-            IniParamDml(myObject);
-            ExecuteQuery(QueryType.Update);
+            IniParamDml(listTables);
+            Execute(QueryType.Update);
         }
 
         /// <summary>
         ///     Actualización de registros de la tabla.
         /// </summary>
-        /// <param name="obj">
+        /// <param name="arrayTables">
         ///     Instancia de una clase o  instancias de diferentes clase con la que se compone la instrucción de Update para
         ///     realizar
         ///     las diferentes actualizaciones. Los miembros de la clase deben ser System.Nullable. Cada Objeto debe ser de una
         ///     clase diferente y se debe pasar en el
         ///     orden en el que se desea realizar cada operación, es decir se debe tener cuidado con las foreing Key de las tablas.
         /// </param>
-        public void Update(params Object[] myObject)
+        public void Update(params Object[] arrayTables)
         {
-            IniParamDml(myObject);
-            ExecuteQuery(QueryType.Update);
+            IniParamDml(arrayTables);
+            Execute(QueryType.Update);
         }
 
         /// <summary>
         ///     Elimina los registros de la tabla.
         /// </summary>
-        /// <param name="obj">
+        /// <param name="arrayTables">
         ///     Instancia de una clase o instacias de diferentes clases con la que se compone la instrucción DELETE para eliminar
         ///     los registros de cada tabla. Los miembros de la clase deben System.Nullable. Cada Objeto debe ser de una clase
         ///     diferente y se debe pasar en el
         ///     orden en el que se desea realizar cada operación, es decir se debe tener cuidado con las foreing Key de las tablas.
         /// </param>
-        public void Delete(params Object[] myObject)
+        public void Delete(params Object[] arrayTables)
         {
-            IniParamDml(myObject);
-            ExecuteQuery(QueryType.Delete);
+            IniParamDml(arrayTables);
+            Execute(QueryType.Delete);
         }
 
         /// <summary>
         ///     Elimina los registros de la tabla.
         /// </summary>
-        /// <param name="obj">
+        /// <param name="listTables">
         ///     Array de un de diferentes instancias de una clase, con la que se compone cada instrucción DELETE para eliminar
         ///     un registro de tabla. Los miembros de la clase deben System.Nullable.
         /// </param>
-        public void Delete(List<Object> myObject)
+        public void Delete(List<Object> listTables)
         {
-            IniParamDml(myObject);
-            ExecuteQuery(QueryType.Delete);
+            IniParamDml(listTables);
+            Execute(QueryType.Delete);
         }
 
         /// <summary>
         ///     Obtiene el conjunto de resultados de una consulta Select en función del Objeto pasado.
         /// </summary>
-        /// <param name="myObject">Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto ArrayList.</param>
+        /// <param name="table">
+        ///     Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto
+        ///     ArrayList.
+        /// </param>
         /// <returns>Devuelve un ArrayList del objeto pasado por parámetro.</returns>
-        public ArrayList Select(Object myObject)
+        public ArrayList Select(Object table)
         {
-            IniParamDml(myObject);
+            IniParamDml(table);
             return SelectQuery(SelectDataReader);
         }
 
         /// <summary>
         ///     Obtiene el conjunto de resultados de una consulta Select en función del Objeto pasado.
         /// </summary>
-        /// <param name="myObject">Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto ArrayList.</param>
+        /// <param name="table">
+        ///     Objeto que se utilizará como filtro de la consulta Select y como resultado del Objeto
+        ///     ArrayList.
+        /// </param>
         /// <returns>Devuelve un ArrayList del objeto pasado por parámetro.</returns>
-        public ArrayList SelectDataSet(Object myObject)
+        public ArrayList SelectDataSet(Object table)
         {
-            IniParamDml(myObject);
+            IniParamDml(table);
             return SelectQuery(SelectDataSet);
         }
 
@@ -177,63 +181,62 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Inicializa el objeto para la instrucción DML.
         /// </summary>
-        /// <param name="myObject">Lista de Objetos para realizar la instrucción DML.</param>
-        private void IniParamDml(params Object[] myObject)
+        /// <param name="arrayObject">Lista de Objetos para realizar la instrucción DML.</param>
+        private void IniParamDml(params Object[] arrayObject)
         {
-            oColObject = myObject;
-            myValidateObject = new ValidateObjects(oCon, oColObject);
+            _coumnlObject = arrayObject;
+            _validateColumns = new ValidateObjects(_con, _coumnlObject);
         }
 
         /// <summary>
         ///     Inicializa el objeto para la instrucción DML.
         /// </summary>
-        /// <param name="myObject">Lista de Objetos para realizar la instrucción DML.</param>
-        private void IniParamDml(List<Object> myObject)
+        /// <param name="listObject">Lista de Objetos para realizar la instrucción DML.</param>
+        private void IniParamDml(List<Object> listObject)
         {
-            listObject = myObject;
-            listObject.Add(myObject);
-            myValidateObject = new ValidateObjects(oCon, listObject[0]);
+            listObject.Add(listObject);
+            _validateColumns = new ValidateObjects(_con, listObject[0]);
         }
 
         /// <summary>
         ///     Ejecuta la culsuta de UPDATE,INSERT,DELETE.
         /// </summary>
-        /// <param name="eTipoQuery">Indica el tipo de operación.</param>
+        /// <param name="queryType">Indica el tipo de operación.</param>
         /// <param name="obj">Indica el tipo de operación.</param>
-        private void ExecuteQuery(QueryType eTipoQuery)
+        private void Execute(QueryType queryType)
         {
             try
             {
-                if (oCon.Status() == ConnectionState.Closed)
-                    oCon.DbOpen();
-                oCon.BeginTransaction();
+                if (_con.Status() == ConnectionState.Closed)
+                    _con.DbOpen();
+                _con.BeginTransaction();
 
-                foreach (var myClsObj in myValidateObject.ColumnObjects)
+                foreach (var myClsObj in _validateColumns.ColumnObjects)
                 {
-                    if (oColObject != null)
+                    if (_coumnlObject != null)
                     {
                         //Ejecutamos la transacción a la base de datos.
-                        oCon.Execute(myValidateObject.GetQuery(eTipoQuery, myClsObj.Value));
+                        _con.Execute(_validateColumns.GetQuery(queryType, myClsObj.Value));
                     }
                     else
                     {
-                        foreach (Object myObj in listObject)
+                        foreach (Object myObj in _listTables)
                         {
-                            oCon.Execute(myValidateObject.GetQuery(eTipoQuery, myClsObj.Value, myObj));
+                            _con.Execute(_validateColumns.GetQuery(queryType, myClsObj.Value, myObj));
                         }
                     }
                 }
-                oCon.Commit();
+                _con.Commit();
             }
             catch (NpgsqlException ex)
             {
                 //todo:MEJORA. Quitar las exception y sustituir por una clase de negocio.
-                oCon.RollBack();
+                _con.RollBack();
                 throw new ArgumentException(ex.ToString(), ToString());
             }
             finally
             {
-                oCon.DbClose();
+                _con.DbClose();
             }
         }
 
@@ -244,14 +247,14 @@ namespace SimpleDataMapper.Data
         /// <returns>Devuelve un objeto ArrayList con el resultado de la consulta SQL.</returns>
         private ArrayList SelectQuery(DelegadoSelect funDel)
         {
-            ArrayList ResultSelect;
+            ArrayList resultSelect;
             try
             {
-                if (oCon.Status() == ConnectionState.Closed)
-                    oCon.DbOpen();
-                DelegadoSelect MyDel = funDel;
-                ResultSelect = MyDel();
-                oCon.DbClose();
+                if (_con.Status() == ConnectionState.Closed)
+                    _con.DbOpen();
+                DelegadoSelect queryDelegate = funDel;
+                resultSelect = queryDelegate();
+                _con.DbClose();
             }
             catch (NpgsqlException ex)
             {
@@ -259,9 +262,9 @@ namespace SimpleDataMapper.Data
             }
             finally
             {
-                oCon.DbClose();
+                _con.DbClose();
             }
-            return ResultSelect;
+            return resultSelect;
         }
 
         /// <summary>
@@ -270,27 +273,23 @@ namespace SimpleDataMapper.Data
         /// <returns>Devuelve un objeto ArrayList con el resultado de la consulta SQL.</returns>
         private ArrayList SelectDataSet()
         {
-            var ResultSelect = new ArrayList();
-            DataSet dtTablaSelect = null;
-            foreach (var myClsObj in myValidateObject.ColumnObjects)
+            var resultSelect = new ArrayList();
+            foreach (var myClsObj in _validateColumns.ColumnObjects)
             {
-                if (oColObject != null)
+                if (_coumnlObject == null) continue;
+                DataSet dtTablaSelect = _con.InitDataAdapter(_validateColumns.GetQuery(QueryType.Select,
+                    myClsObj.Value));
+                foreach (DataRow row in dtTablaSelect.Tables[0].Rows)
                 {
-                    dtTablaSelect =
-                        oCon.InitDataAdapter(myValidateObject.GetQuery(QueryType.Select,
-                            myClsObj.Value));
-                    foreach (DataRow row in dtTablaSelect.Tables[0].Rows)
+                    myClsObj.Value.CreateInstance();
+                    foreach (DataColumn col in dtTablaSelect.Tables[0].Columns)
                     {
-                        myClsObj.Value.CreateInstance();
-                        foreach (DataColumn col in dtTablaSelect.Tables[0].Columns)
-                        {
-                            myClsObj.Value[col.ColumnName] = row[col.ColumnName];
-                        }
-                        ResultSelect.Add(myClsObj.Value.MyObject);
+                        myClsObj.Value[col.ColumnName] = row[col.ColumnName];
                     }
+                    resultSelect.Add(myClsObj.Value.MyObject);
                 }
             }
-            return ResultSelect;
+            return resultSelect;
         }
 
         /// <summary>
@@ -299,37 +298,32 @@ namespace SimpleDataMapper.Data
         /// <returns>Devuelve un objeto ArrayList con el resultado de la consulta SQL.</returns>
         private ArrayList SelectDataReader()
         {
-            var ResultSelect = new ArrayList();
-            foreach (var myClsObj in myValidateObject.ColumnObjects)
+            var resultSelect = new ArrayList();
+            foreach (var myClsObj in _validateColumns.ColumnObjects)
             {
-                if (oColObject != null)
+                if (_coumnlObject == null) continue;
+                //Abrimos la conexión con el data Reader para obtener los registros.
+                NpgsqlDataReader reader = _con.DataReader(_validateColumns.GetQuery(QueryType.Select, myClsObj.Value));
+                //Obtenemos los nombres de la columna y lo almacenamos 
+                reader.GetSchemaTable();
+                var nameColumns = new List<String>();
+                for (int i = 0; i < reader.FieldCount; i++)
                 {
-                    //Abrimos la conexión con el data Reader para obtener los registros.
-                    NpgsqlDataReader reader =
-                        oCon.DataReader(myValidateObject.GetQuery(QueryType.Select, myClsObj.Value));
-                    //Obtenemos los nombres de la columna y lo almacenamos 
-                    DataTable dt = reader.GetSchemaTable();
-                    var nameColumns = new List<String>();
-                    for (int i = 0; i < reader.FieldCount; i++)
+                    nameColumns.Add(reader.GetName(i));
+                }
+                //Si se han obtenidos registros los añadimos al arrayList
+                if (!reader.HasRows) continue;
+                while (reader.Read())
+                {
+                    myClsObj.Value.CreateInstance();
+                    foreach (string nameColumn in nameColumns)
                     {
-                        nameColumns.Add(reader.GetName(i));
+                        myClsObj.Value[nameColumn] = reader[nameColumn];
                     }
-                    //Si se han obtenidos registros los añadimos al arrayList
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            myClsObj.Value.CreateInstance();
-                            foreach (String nameColumn in nameColumns)
-                            {
-                                myClsObj.Value[nameColumn] = reader[nameColumn];
-                            }
-                            ResultSelect.Add(myClsObj.Value.MyObject);
-                        }
-                    }
+                    resultSelect.Add(myClsObj.Value.MyObject);
                 }
             }
-            return ResultSelect;
+            return resultSelect;
         }
 
         #endregion

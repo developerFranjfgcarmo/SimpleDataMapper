@@ -260,7 +260,7 @@ namespace Tareas
                 listPrueba.Add(p);
             }
 
-            Program.oExe = new ClsExecuteQuery(Program.oCon );
+            Program.oExe = new ExecuteQuery(Program.oCon );
             Program.oExe.Insert();
             //Program.oExe.Insert();
         }
@@ -286,7 +286,7 @@ namespace Tareas
                 listPrueba1.Add(p4);
                 listPrueba1.Add(p5);*/
                 /**/
-                Program.oExe = new ClsExecuteQuery(Program.oCon);
+                Program.oExe = new ExecuteQuery(Program.oCon);
             listPrueba1 = Program.oExe.SelectDataSet(p);
             //listPrueba1 = Program.oExe.Select(p);
 

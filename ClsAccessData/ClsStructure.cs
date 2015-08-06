@@ -144,7 +144,7 @@ namespace SimpleDataMapper
                 // http://msdn2.microsoft.com/es-es/library/ms254501(VS.80).aspx
 
                 //Obtenemos todas las tablas de base datos.
-                dtShema = oCon.DbConnection.GetSchema("Tables", new String[] {null, "public", null, "BASE TABLE"});
+                dtShema = oCon.Connection.GetSchema("Tables", new String[] {null, "public", null, "BASE TABLE"});
                 foreach (DataRow rowSchema in dtShema.Rows)
                 {
                     oColTable = new Hashtable();
@@ -204,7 +204,7 @@ namespace SimpleDataMapper
             Hashtable cRowSchema;
             int iPrimaryKeys = 0;
 
-            dtTable = oCon.DbConnection.GetSchema("Columns", new String[] {null, null, sNombreTable, null});
+            dtTable = oCon.Connection.GetSchema("Columns", new String[] {null, null, sNombreTable, null});
             // GetPrimaryKey(sNombreTable);
             //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
             foreach (DataRow row in dtTable.Rows)

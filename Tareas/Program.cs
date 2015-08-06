@@ -16,7 +16,7 @@ namespace Tareas
         /// Almacena la conexión a la base datos.
         /// </summary>
         public static ClsConnection oCon=null;
-        public static ClsExecuteQuery oExe = null;
+        public static ExecuteQuery oExe = null;
         public static ClsStructure clsStruct = null;
         
         /// <summary>
