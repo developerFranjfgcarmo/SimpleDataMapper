@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SimpleDataMapper;
-using SimpleDataMapper.Connection;
+using SimpleDataMapper.Connector;
 using SimpleDataMapper.Data;
 
 namespace Tareas
@@ -15,9 +15,9 @@ namespace Tareas
         /// <summary>
         /// Almacena la conexión a la base datos.
         /// </summary>
-        public static ClsConnection oCon=null;
+        public static Connection oCon=null;
         public static ExecuteQuery oExe = null;
-        public static ClsStructure clsStruct = null;
+        public static Structure clsStruct = null;
         
         /// <summary>
         /// Punto de entrada principal para la aplicación.

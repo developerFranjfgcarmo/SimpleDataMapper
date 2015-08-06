@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Windows.Forms;
-using SimpleDataMapper.Connection;
+using SimpleDataMapper.Connector;
 
 namespace Tareas.ControlData
 {
@@ -11,7 +11,7 @@ namespace Tareas.ControlData
     {
         #region"Declaración de métodos miembros."
 
-        private ClsConnection oConn;
+        private Connection oConn;
 
         /// <summary>
         /// Indica si se ha llegado al final de los registros
@@ -455,7 +455,7 @@ namespace Tareas.ControlData
         ///  fué llamada esta función.</param>
         /// <param name="ElevaError"></param>
         /// <returns>Devuelve un Datatable con el resultado de la SQL</returns>
-        public DataTable SQLQuery(ClsConnection oConnBD, String sSQL, bool ElevaError) 
+        public DataTable SQLQuery(Connection oConnBD, String sSQL, bool ElevaError) 
         {
             DataTable oRes   = null;
 

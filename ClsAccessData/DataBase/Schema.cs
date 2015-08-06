@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using SimpleDataMapper.Connection;
+using SimpleDataMapper.Connector;
 using SimpleDataMapper.utilities;
 
 namespace SimpleDataMapper.DataBase
@@ -15,7 +15,7 @@ namespace SimpleDataMapper.DataBase
         /// <summary>
         ///     Objeto que almacena la conexión de la base de datos.
         /// </summary>
-        private readonly ClsConnection _conection;
+        private readonly Connection _conection;
 
         /// <summary>
         ///     Nombre de la tabla activa
@@ -35,7 +35,7 @@ namespace SimpleDataMapper.DataBase
         ///     Inicializa el esquema de la base de datos.
         /// </summary>
         /// <param name="connection">Objeto que contiene la conexión a la base de datos.</param>
-        internal Schema(ClsConnection connection) : this("", connection)
+        internal Schema(Connection connection) : this("", connection)
         {
         }
 
@@ -44,7 +44,7 @@ namespace SimpleDataMapper.DataBase
         /// </summary>
         /// <param name="sNameTable">Nombre de la tabla a inicializar.</param>
         /// <param name="oConection">Objeto que contiene la conexión a la base de datos.</param>
-        internal Schema(String sNameTable, ClsConnection oConection)
+        internal Schema(String sNameTable, Connection oConection)
         {
             _conection = oConection;
             if (_conection.Status() == ConnectionState.Closed)
@@ -118,7 +118,7 @@ namespace SimpleDataMapper.DataBase
                     }
                     else
                     {
-                        ClsTraccer.RunException(
+                        Traccer.RunException(
                             "Error al obtener las primary keys de la tabla " + table.NameTable + " - " +
                             drKeys["attname"].ToString().Trim(), "GetPrimaryKey");
                     }
@@ -126,7 +126,7 @@ namespace SimpleDataMapper.DataBase
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al obtener las primary keys de la tabla " + table.NameTable,
+                Traccer.RunException(ex, "Error al obtener las primary keys de la tabla " + table.NameTable,
                     "GetPrimaryKey");
             }
         }
@@ -147,7 +147,7 @@ namespace SimpleDataMapper.DataBase
                 //Obtenemos todas las tablas de base datos.             
 
                 //dtShema = this.oConection.DBConnection.GetSchema("Tables", restriction);
-                var dtShema = _conection.Connection.GetSchema("Tables",
+                var dtShema = _conection.DbConnection.GetSchema("Tables",
                     new[] {null, "public", null, "BASE TABLE"});
                 foreach (DataRow rowSchema in dtShema.Rows)
                 {
@@ -169,7 +169,7 @@ namespace SimpleDataMapper.DataBase
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + _nameTable,
+                Traccer.RunException(ex, "Error al inicializar el esquema de la tabla " + _nameTable,
                     "LoadSchema overloads1");
             }
         }
@@ -184,7 +184,7 @@ namespace SimpleDataMapper.DataBase
             var table = new Table(_nameTable, new List<string>(), new List<Column>());
             try
             {
-                var dtTable = _conection.Connection.GetSchema("Columns", new[] {null, null, nameTable, null});
+                var dtTable = _conection.DbConnection.GetSchema("Columns", new[] {null, null, nameTable, null});
                 //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
                 foreach (DataRow row in dtTable.Rows)
                 {
@@ -224,7 +224,7 @@ namespace SimpleDataMapper.DataBase
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + _nameTable,
+                Traccer.RunException(ex, "Error al inicializar el esquema de la tabla " + _nameTable,
                     "LoadTable overloads1");
             }
             return table;

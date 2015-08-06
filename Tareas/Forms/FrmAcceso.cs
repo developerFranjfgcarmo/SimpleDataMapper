@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using SimpleDataMapper;
-using SimpleDataMapper.Connection;
+using SimpleDataMapper.Connector;
 using SimpleDataMapper.Data;
 using Tareas.ComunClass;
 using Tareas.ControlData;
@@ -173,11 +173,11 @@ namespace Tareas
             bool bExit = false;
             try
             {
-                Program.oCon = new ClsConnection(this.txtHost.Text, this.txtDataBase.Text,
+                Program.oCon = new Connection(this.txtHost.Text, this.txtDataBase.Text,
                                                           this.txtUserId.Text, this.txtPassword.Text);
             
                 Program.oCon.DbOpen();
-                Program.clsStruct = new ClsStructure(Program.oCon);
+                Program.clsStruct = new Structure(Program.oCon);
                 bExit = true;
             }
             catch (Exception ex)

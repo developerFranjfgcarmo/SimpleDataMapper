@@ -33,7 +33,7 @@ namespace SimpleDataMapper
 {
     //Todo: Revisar esta función de traza, no debería mostrar mensajes muy descriptivos.
     //Todo: Mirar en la documentación MSDN, como tracear.
-    internal class ClsTraccer
+    internal class Traccer
     {
         /// <summary>
         ///     Guarda un texto en un Fichero de Texto

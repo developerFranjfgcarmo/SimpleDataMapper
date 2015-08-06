@@ -14,14 +14,14 @@ using System.Reflection;
 
 
 //Todo. Controlar errores de unique, contraint, triggers.
-using SimpleDataMapper.Connection;
+using SimpleDataMapper.Connector;
 
 namespace SimpleDataMapper
 {
     /// <summary>
     ///     adfsdf
     /// </summary>
-    public class ClsStructure
+    public class Structure
     {
         /// <summary>
         ///     Tipos de propiedades de los campos.
@@ -74,7 +74,7 @@ namespace SimpleDataMapper
         /// <summary>
         ///     Almacena la conexión a la base datos.
         /// </summary>
-        private ClsConnection oCon;
+        private Connection oCon;
 
         /// <summary>
         ///     Contiene la coleción de columnas claves y su correspondiente valor.
@@ -100,7 +100,7 @@ namespace SimpleDataMapper
         ///     Constructor de la clase.
         /// </summary>
         /// <param name="oCon">Conexión de la base datos.</param>
-        public ClsStructure(ClsConnection oCon)
+        public Structure(Connection oCon)
         {
             this.oCon = oCon;
             LoadSchema();
@@ -111,7 +111,7 @@ namespace SimpleDataMapper
         /// </summary>
         /// <param name="oCon">Conexión de la base datos.</param>
         /// <param name="sNameTable">Nombre de la tabla para obtener el esquema.</param>
-        public ClsStructure(ClsConnection oCon, String sNameTable)
+        public Structure(Connection oCon, String sNameTable)
         {
             this.oCon = oCon;
             LoadSchema(sNameTable);
@@ -144,7 +144,7 @@ namespace SimpleDataMapper
                 // http://msdn2.microsoft.com/es-es/library/ms254501(VS.80).aspx
 
                 //Obtenemos todas las tablas de base datos.
-                dtShema = oCon.Connection.GetSchema("Tables", new String[] {null, "public", null, "BASE TABLE"});
+                dtShema = oCon.DbConnection.GetSchema("Tables", new String[] {null, "public", null, "BASE TABLE"});
                 foreach (DataRow rowSchema in dtShema.Rows)
                 {
                     oColTable = new Hashtable();
@@ -170,7 +170,7 @@ namespace SimpleDataMapper
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + sNameTable,
+                Traccer.RunException(ex, "Error al inicializar el esquema de la tabla " + sNameTable,
                     "LoadSchema overloads1");
             }
         }
@@ -187,7 +187,7 @@ namespace SimpleDataMapper
             }
             catch (Exception ex)
             {
-                ClsTraccer.RunException(ex, "Error al inicializar el esquema de la tabla " + sNameTable,
+                Traccer.RunException(ex, "Error al inicializar el esquema de la tabla " + sNameTable,
                     "LoadSchema overloads2");
             }
         }
@@ -204,7 +204,7 @@ namespace SimpleDataMapper
             Hashtable cRowSchema;
             int iPrimaryKeys = 0;
 
-            dtTable = oCon.Connection.GetSchema("Columns", new String[] {null, null, sNombreTable, null});
+            dtTable = oCon.DbConnection.GetSchema("Columns", new String[] {null, null, sNombreTable, null});
             // GetPrimaryKey(sNombreTable);
             //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
             foreach (DataRow row in dtTable.Rows)
@@ -437,7 +437,7 @@ namespace SimpleDataMapper
                 case "int4":
                 case "int8":
                 case "int2":
-                    if (ClsGeneral.IsNumeric(sValorCampo))
+                    if (General.IsNumeric(sValorCampo))
                         //si viene con decimales se los quita
                         sValorCampo = int.Parse(sValorCampo.ToString()).ToString();
                     else if (sValorCampo.ToUpper() == "NULL")
@@ -459,7 +459,7 @@ namespace SimpleDataMapper
                 case "timestamp":
                 case "date":
                 case "timetz":
-                    if (ClsGeneral.IsDate(sValorCampo))
+                    if (General.IsDate(sValorCampo))
                     {
                         sComilla = "'";
                         //TODO:dar formato de fecha adecuado si es necesario.
@@ -477,7 +477,7 @@ namespace SimpleDataMapper
 
                 case "float8":
                 case "numeric":
-                    if (ClsGeneral.IsNumeric(sValorCampo))
+                    if (General.IsNumeric(sValorCampo))
                         //convierte la coma en punto
                         sValorCampo = sValorCampo.Replace(",", ".");
                     else if (sValorCampo.ToUpper() == "NULL")
@@ -514,12 +514,12 @@ namespace SimpleDataMapper
                         return;
                     }
                     else
-                        ClsTraccer.RunException(
+                        Traccer.RunException(
                             "La tabla " + myFieldInfo[i].GetValue(obj) + " no existe en el esquema de la base datos.",
                             "CheckTable");
             }
             //TODO:MIRAR ESTO Y COMPROBAR QUE RECORRE TODOS LOS CAMPOS DE LA CLASE.
-            ClsTraccer.RunException(
+            Traccer.RunException(
                 "Debe declarar el dato miembro DataTable y inicializarlo con el nombre de la tabla en su clase.",
                 "CheckTable");
         }
@@ -550,7 +550,7 @@ namespace SimpleDataMapper
                         //Comprobamos que los campos claves no seán nulo, si el campo esta duplicado la base de datos
                         //es la que nos va a devolver el error.
                         if (myFieldInfo[i].GetValue(obj) == null)
-                            ClsTraccer.RunException(
+                            Traccer.RunException(
                                 "El campo  clave " + myFieldInfo[i].Name + "de la tabla " + sTableName +
                                 "no puede ser nulo.", "CheckKeys");
                         iKeysObj = +1;
@@ -562,7 +562,7 @@ namespace SimpleDataMapper
                 return;
             else
             {
-                ClsTraccer.RunException("Primary keys no definida en la clase " + obj.ToString(), "CheckKeys");
+                Traccer.RunException("Primary keys no definida en la clase " + obj.ToString(), "CheckKeys");
                 return;
             }
         }
@@ -602,7 +602,7 @@ namespace SimpleDataMapper
                             bExit = true;
                         else if (i >= myFieldInfo.Length - 1)
                         {
-                            ClsTraccer.RunException(
+                            Traccer.RunException(
                                 "El campo " + oDic.Key.ToString() + " no existe en esquema de la tabla " + sTableName,
                                 "CheckFields");
                         }

@@ -2,11 +2,11 @@ using System;
 using System.Data;
 using Npgsql;
 
-namespace SimpleDataMapper.Connection
+namespace SimpleDataMapper.Connector
 {
     /// <summary>
     /// </summary>
-    public class ClsConnection
+    public class Connection
     {
         #region" Región de declaración de variables."
 
@@ -27,7 +27,7 @@ namespace SimpleDataMapper.Connection
         /// <param name="sBd">Catálogo de la base datos.</param>
         /// <param name="sUsuarioBd">Usuario de la base datos.</param>
         /// <param name="sContrenaBd">Contraseña de la base de datos.</param>
-        public ClsConnection(string sServidorDb, string sBd, string sUsuarioBd, string sContrenaBd)
+        public Connection(string sServidorDb, string sBd, string sUsuarioBd, string sContrenaBd)
         {
             Server = sServidorDb;
             DataBase = sBd;
@@ -36,7 +36,7 @@ namespace SimpleDataMapper.Connection
 
             string sConectionString = string.Format("User Id={0};Password={1};Host={2};Database={3}", Server,
                 Password, Server, DataBase);
-            Connection = new NpgsqlConnection {ConnectionString = sConectionString};
+            DbConnection = new NpgsqlConnection {ConnectionString = sConectionString};
             // this.oConnection.Open();
         }
 
@@ -68,7 +68,7 @@ namespace SimpleDataMapper.Connection
         /// <summary>
         ///     Obtiene el objeto oConnection.
         /// </summary>
-        public NpgsqlConnection Connection { get; private set; }
+        public NpgsqlConnection DbConnection { get; private set; }
 
         /// <summary>
         ///     Indica el estado de la conexión de la base de datos.
@@ -76,7 +76,7 @@ namespace SimpleDataMapper.Connection
         /// <returns>Devuelve un tipo ConnectionState que indica el estado de la conexión.</returns>
         internal ConnectionState Status()
         {
-            return Connection.State;
+            return DbConnection.State;
         }
 
         /// <summary>
@@ -84,9 +84,9 @@ namespace SimpleDataMapper.Connection
         /// </summary>
         public void DbOpen()
         {
-            if (Connection.State == ConnectionState.Closed)
+            if (DbConnection.State == ConnectionState.Closed)
             {
-                Connection.Open();
+                DbConnection.Open();
             }
         }
 
@@ -95,9 +95,9 @@ namespace SimpleDataMapper.Connection
         /// </summary>
         public void DbClose()
         {
-            if (Connection.State == ConnectionState.Open)
+            if (DbConnection.State == ConnectionState.Open)
             {
-                Connection.Close();
+                DbConnection.Close();
             }
         }
 
@@ -106,7 +106,7 @@ namespace SimpleDataMapper.Connection
         /// </summary>
         internal void BeginTransaction()
         {
-            Transaccion = Connection.BeginTransaction();
+            Transaccion = DbConnection.BeginTransaction();
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace SimpleDataMapper.Connection
         public int Execute(string sSql)
         {
             var iCount = 0;
-            var oCmd = Connection.CreateCommand();
+            var oCmd = DbConnection.CreateCommand();
             if (Transaccion != null)
             {
                 oCmd.Transaction = Transaccion;
@@ -157,7 +157,7 @@ namespace SimpleDataMapper.Connection
             var dsRes = new DataSet();
             try
             {
-                _miDataAdapter = new NpgsqlDataAdapter(sQuery, Connection)
+                _miDataAdapter = new NpgsqlDataAdapter(sQuery, DbConnection)
                 {
                     SelectCommand = {Transaction = Transaccion}
                 };
@@ -179,7 +179,7 @@ namespace SimpleDataMapper.Connection
         /// <returns>Devuelve un objeto DataSet.</returns>
         public NpgsqlDataReader DataReader(String sQuery)
         {
-            var command = new NpgsqlCommand(sQuery, Connection);
+            var command = new NpgsqlCommand(sQuery, DbConnection);
             if (Status() == ConnectionState.Closed)
                 DbOpen();
             var reader = command.ExecuteReader();

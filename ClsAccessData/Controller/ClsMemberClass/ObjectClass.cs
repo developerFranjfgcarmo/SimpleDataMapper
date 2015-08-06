@@ -48,7 +48,7 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
                 LoadMenbersClass();
             }
             else
-                ClsTraccer.RunException("El elemento myObject no puede ser nulo.", "LoadMenbersClass");
+                Traccer.RunException("El elemento myObject no puede ser nulo.", "LoadMenbersClass");
         }
 
         #endregion
@@ -214,12 +214,12 @@ namespace SimpleDataMapper.Controller.ClsMemberClass
                 }
                 else
                 {
-                    ClsTraccer.RunException("La propiedad " + sName + " no tiene definido la propiedad de escritura.",
+                    Traccer.RunException("La propiedad " + sName + " no tiene definido la propiedad de escritura.",
                         ToString());
                 }
             }
             else
-                ClsTraccer.RunException("No existe la propiedad " + sName, ToString());
+                Traccer.RunException("No existe la propiedad " + sName, ToString());
         }
 
         /// <summary>

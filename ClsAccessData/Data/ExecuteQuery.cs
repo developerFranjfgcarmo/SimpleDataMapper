@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Npgsql;
-using SimpleDataMapper.Connection;
+using SimpleDataMapper.Connector;
 
 namespace SimpleDataMapper.Data
 {
@@ -20,7 +20,7 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Almacena la conexión a la base de datos.
         /// </summary>
-        private readonly ClsConnection _con;
+        private readonly Connection _con;
 
         /// <summary>
         ///     Almacena una colección de objetos de diferentes clases pasados por parámetros.
@@ -51,7 +51,7 @@ namespace SimpleDataMapper.Data
         ///     Constructor de la clase ClsExecuteQuery.
         /// </summary>
         /// <param name="oCon">Instancia al Objeto conexión de la base de datos.</param>
-        public ExecuteQuery(ClsConnection oCon)
+        public ExecuteQuery(Connection oCon)
         {
             _con = oCon;
         }
@@ -176,7 +176,7 @@ namespace SimpleDataMapper.Data
 
         #endregion
 
-        #region Declaración de métodos públicos.
+        #region [Private Methods]
 
         /// <summary>
         ///     Inicializa el objeto para la instrucción DML.
@@ -192,7 +192,7 @@ namespace SimpleDataMapper.Data
         ///     Inicializa el objeto para la instrucción DML.
         /// </summary>
         /// <param name="listObject">Lista de Objetos para realizar la instrucción DML.</param>
-        private void IniParamDml(List<Object> listObject)
+        private void IniParamDml(IList<object> listObject)
         {
             listObject.Add(listObject);
             _validateColumns = new ValidateObjects(_con, listObject[0]);
@@ -202,7 +202,6 @@ namespace SimpleDataMapper.Data
         ///     Ejecuta la culsuta de UPDATE,INSERT,DELETE.
         /// </summary>
         /// <param name="queryType">Indica el tipo de operación.</param>
-        /// <param name="obj">Indica el tipo de operación.</param>
         private void Execute(QueryType queryType)
         {
             try

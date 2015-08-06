@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace SimpleDataMapper
 {
-    internal class ClsGeneral
+    internal class General
     {
         /// <summary>
         ///     Devuelve un valor boolean que indica si la expresión de puede evaluar como número
