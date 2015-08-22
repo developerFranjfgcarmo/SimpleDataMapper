@@ -30,7 +30,7 @@ namespace SimpleDataMapper.Data
         /// <summary>
         ///     Almacena una colección de objetos de la misma clase.
         /// </summary>
-        private List<Object> _listTables;
+        private List<object> _listTables;
 
         /// <summary>
         ///     Valida el Objeto con la tabla correspondiente.
@@ -194,7 +194,7 @@ namespace SimpleDataMapper.Data
         /// <param name="listObject">Lista de Objetos para realizar la instrucción DML.</param>
         private void IniParamDml(IList<object> listObject)
         {
-            listObject.Add(listObject);
+            _listTables=(List<object>) listObject;
             _validateColumns = new ValidateObjects(_con, listObject[0]);
         }
 

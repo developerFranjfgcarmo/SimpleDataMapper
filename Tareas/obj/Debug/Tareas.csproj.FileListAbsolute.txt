@@ -38,11 +38,6 @@ F:\6 Pruebas(Tareas)\Tareas\Tareas\obj\Debug\Tareas.Properties.Resources.resourc
 F:\6 Pruebas(Tareas)\Tareas\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
 F:\6 Pruebas(Tareas)\Tareas\Tareas\obj\Debug\Tareas.exe
 F:\6 Pruebas(Tareas)\Tareas\Tareas\obj\Debug\Tareas.pdb
-C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.Forms.Form1.resources
-C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.FrmAcceso.resources
-C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.Forms.MdiPrincipal.resources
-C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.Properties.Resources.resources
-C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\bin\Debug\Tareas.exe.config
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\bin\Debug\Tareas.exe
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\bin\Debug\Tareas.pdb
@@ -58,5 +53,10 @@ C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\bin\Debug\fr\Npgsql.resourc
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\bin\Debug\ja\Npgsql.resources.dll
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\bin\Debug\zh-CN\Npgsql.resources.dll
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.csprojResolveAssemblyReference.cache
+C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.Forms.Form1.resources
+C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.FrmAcceso.resources
+C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.Forms.MdiPrincipal.resources
+C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.Properties.Resources.resources
+C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.csproj.GenerateResource.Cache
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.exe
 C:\Users\Francisco\Documents\SimpleDataMapper\Tareas\obj\Debug\Tareas.pdb

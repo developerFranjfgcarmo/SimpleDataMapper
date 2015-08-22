@@ -184,10 +184,16 @@ namespace SimpleDataMapper.DataBase
             var table = new Table(_nameTable, new List<string>(), new List<Column>());
             try
             {
-                var dtTable = _conection.DbConnection.GetSchema("Columns", new[] {null, null, nameTable, null});
+                var dtTable = _conection.DbConnection.GetSchema("Columns", new string[] { null, null, nameTable, null });
                 //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
                 foreach (DataRow row in dtTable.Rows)
                 {
+                    //row["IS_NULLABLE"]
+                    /*
+                     * SELECT *
+FROM   information_schema.columns
+WHERE  table_name  = 'prueba'
+                     */
                     using (var oColumn = new Column())
                     {
                         //recorre cada propiedad del campo 

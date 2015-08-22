@@ -34,7 +34,7 @@ namespace SimpleDataMapper.Connector
             User = sUsuarioBd;
             Password = sContrenaBd;
 
-            string sConectionString = string.Format("User Id={0};Password={1};Host={2};Database={3}", Server,
+            string sConectionString = string.Format("User Id={0};Port=5432;Password={1};Server={2};Database={3}", sUsuarioBd,
                 Password, Server, DataBase);
             DbConnection = new NpgsqlConnection {ConnectionString = sConectionString};
             // this.oConnection.Open();

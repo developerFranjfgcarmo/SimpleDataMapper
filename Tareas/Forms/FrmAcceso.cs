@@ -251,7 +251,7 @@ namespace Tareas
         private void button2_Click(object sender, EventArgs e)
         {
             List<Object> listPrueba = new List<Object>();
-            for (int i = 81000; i <= 90000; i++)
+            for (int i = 0; i <= 90000; i++)
             {
                 ClsPrueba p = new ClsPrueba();
                 p.P1 = i;
@@ -261,7 +261,7 @@ namespace Tareas
             }
 
             Program.oExe = new ExecuteQuery(Program.oCon );
-            Program.oExe.Insert();
+            Program.oExe.Insert(listPrueba);
             //Program.oExe.Insert();
         }
 
