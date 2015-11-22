@@ -55,7 +55,7 @@ namespace SimpleDataMapper.DataBase
         /// <returns>Devuelve un True si el campo es Primary Key y false en caso contrario.</returns>
         internal Boolean IsPrimaryKeys(String nameColumn)
         {
-            var oColumn = ColPrimaryKey.Find(oFindCol => oFindCol == nameColumn);
+            var oColumn = ColPrimaryKey.Find(oFindCol => oFindCol.Equals(nameColumn, StringComparison.CurrentCultureIgnoreCase));
             return !String.IsNullOrEmpty(oColumn);
         }
 
@@ -66,14 +66,14 @@ namespace SimpleDataMapper.DataBase
         /// <returns>Devuelve un objeto ClsColumn</returns>
         internal Column GetColumn(String nameColumn)
         {
-            var oColumn =ColColums.Find(oFindCol => oFindCol.NameColumn == nameColumn);
+            var oColumn = ColColums.Find(oFindCol => oFindCol.NameColumn.Equals(nameColumn, StringComparison.CurrentCultureIgnoreCase));
             return oColumn ?? null;
         }
 
 
         internal Boolean ThereIsColumn(String nameColumn)
         {
-            var oColumn =ColColums.Find(oFindCol => oFindCol.NameColumn == nameColumn);
+            var oColumn = ColColums.Find(oFindCol => oFindCol.NameColumn.Equals(nameColumn, StringComparison.CurrentCultureIgnoreCase));
             return oColumn != null;
         }
 

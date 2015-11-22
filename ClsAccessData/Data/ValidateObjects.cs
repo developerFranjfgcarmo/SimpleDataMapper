@@ -232,13 +232,13 @@ namespace SimpleDataMapper.Data
             return whereSql;
         }
 
-
+        //todo:22/08/2015 poner los nombre de las tablas y columnas con comillas dobles.
         internal string GetQuery(QueryType queryType, ObjectClass objectOfClass, Object oneObject)
         {
             string fields = string.Empty, value = string.Empty;
             const string point = ",";
             string query = string.Empty, whereSql = string.Empty;
-
+            string doubleQuotes = "\"";
             if (oneObject != null)
                 objectOfClass.MyObject = oneObject;
 
@@ -250,18 +250,18 @@ namespace SimpleDataMapper.Data
                     case QueryType.Delete:
                         break;
                     case QueryType.Update:
-                        fields = myColumn.NameColumn;
+                        fields = doubleQuotes + myColumn.NameColumn + doubleQuotes;
                         value = GetValueObject(myColumn, objectOfClass[myColumn.NameColumn]);
                         if (!String.IsNullOrEmpty(query))
                             query += point;
-                        query += fields + "=" + value;
+                        query +=  fields  + "=" + value;
                         break;
                     case QueryType.Insert:
                         if (!String.IsNullOrEmpty(fields))
                             fields += point;
                         if (!String.IsNullOrEmpty(value))
                             value += point;
-                        fields += myColumn.NameColumn;
+                        fields += doubleQuotes + myColumn.NameColumn + doubleQuotes;
                         value += GetValueObject(myColumn, objectOfClass[myColumn.NameColumn]);
                         break;
                     case QueryType.Select:
@@ -271,10 +271,10 @@ namespace SimpleDataMapper.Data
                         {
                             if (!String.IsNullOrEmpty(whereSql))
                                 whereSql += " AND ";
-                            whereSql += myColumn.NameColumn + " = " +
+                            whereSql += doubleQuotes + myColumn.NameColumn + doubleQuotes + " = " +
                                             GetValueObject(myColumn, objectOfClass[myColumn.NameColumn]);
                         }
-                        fields += myColumn.NameColumn;
+                        fields += doubleQuotes + myColumn.NameColumn + doubleQuotes;
                         break;
                 }
             }
@@ -282,19 +282,19 @@ namespace SimpleDataMapper.Data
             switch (queryType)
             {
                 case QueryType.Delete:
-                    query = "DELETE FROM " + objectOfClass.TableName + " WHERE " +
+                    query = "DELETE FROM " + doubleQuotes + objectOfClass.TableName + doubleQuotes + " WHERE " +
                              GetWhere(objectOfClass.TableName, objectOfClass);
                     break;
                 case QueryType.Update:
-                    query = "UPDATE  " + objectOfClass.TableName + " SET " + query + " WHERE " +
+                    query = "UPDATE  " + doubleQuotes + objectOfClass.TableName + doubleQuotes + " SET " + query + " WHERE " +
                              GetWhere(objectOfClass.TableName, objectOfClass);
                     break;
                 case QueryType.Insert:
-                    query = "INSERT INTO  " + objectOfClass.TableName + "(" + fields + ")" + " VALUES (" + value +
+                    query = "INSERT INTO  " + doubleQuotes + objectOfClass.TableName + doubleQuotes + "(" + fields + ")" + " VALUES (" + value +
                              ")";
                     break;
                 case QueryType.Select:
-                    query = "SELECT " + fields + " FROM " + objectOfClass.TableName + " WHERE " + whereSql;
+                    query = "SELECT " + fields + " FROM " + doubleQuotes + objectOfClass.TableName + doubleQuotes + " WHERE " + whereSql;
                     break;
             }
 

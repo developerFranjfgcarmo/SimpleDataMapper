@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SimpleDataMapper.utilities;
 
 namespace SimpleDataMapper.DataBase
@@ -8,14 +9,24 @@ namespace SimpleDataMapper.DataBase
     /// </summary>
     internal class Column : Disposable
     {
-        #region [private properties]
-
+        #region [private properties]     
         private String _defaultData;
 
         #endregion
 
         #region [Properties]
 
+        internal List<string> ColumnProperties {
+            get
+            {
+                return new List<string>() { "DATA_TYPE", "CHARACTER_MAXIMUM_LENGTH", "IS_NULLABLE", "COLUMN_DEFAULT", "COLUMN_NAME", "IS_IDENTITY" };
+            }
+        }
+
+        /// <summary>
+        ///     Nombre de la columna.
+        /// </summary>
+        internal string IsIdentity { get; set; }
         /// <summary>
         ///     Nombre de la columna.
         /// </summary>

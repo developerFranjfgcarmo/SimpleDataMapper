@@ -38,6 +38,5 @@ C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\fi\Npgsql.
 C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\fr\Npgsql.resources.dll
 C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\ja\Npgsql.resources.dll
 C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\bin\Debug\zh-CN\Npgsql.resources.dll
-C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\obj\Debug\ClsAccessData.csprojResolveAssemblyReference.cache
 C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\obj\Debug\SimpleDataMapper.dll
 C:\Users\Francisco\Documents\SimpleDataMapper\ClsAccessData\obj\Debug\SimpleDataMapper.pdb

@@ -271,7 +271,7 @@ namespace Tareas
             this.label1.Text = DateTime.Now.ToString();
 
             ClsPrueba p = new ClsPrueba();
-            p.Pruebabool = true;
+            p.Pruebabool = false;
          /*   ClsPrueba p2 = new ClsPrueba();
             ClsPrueba p3 = new ClsPrueba();
             ClsPrueba p4 = new ClsPrueba();

@@ -834,6 +834,11 @@
                 Almacena las información de cada columna de la tabla.
             </summary>
         </member>
+        <member name="P:SimpleDataMapper.DataBase.Column.IsIdentity">
+            <summary>
+                Nombre de la columna.
+            </summary>
+        </member>
         <member name="P:SimpleDataMapper.DataBase.Column.NameColumn">
             <summary>
                 Nombre de la columna.

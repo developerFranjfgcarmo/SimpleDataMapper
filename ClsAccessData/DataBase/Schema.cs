@@ -185,46 +185,78 @@ namespace SimpleDataMapper.DataBase
             try
             {
                 var dtTable = _conection.DbConnection.GetSchema("Columns", new string[] { null, null, nameTable, null });
+                //var dtTable = _conection.DbConnection.GetSchema("Columns", new string[] { "TestDataMapper", "public", nameTable, "Columns" });
                 //Recorremos todos los registros, para obtener las propiedades de cada una de las columnas de la tabla.
                 foreach (DataRow row in dtTable.Rows)
                 {
-                    //row["IS_NULLABLE"]
                     /*
-                     * SELECT *
-FROM   information_schema.columns
-WHERE  table_name  = 'prueba'
+                     * SELECT * FROM   information_schema.columns WHERE  table_name  = 'prueba'
                      */
-                    using (var oColumn = new Column())
+                    using (var column = new Column())
                     {
-                        //recorre cada propiedad del campo 
-                        foreach (DataColumn col in dtTable.Columns)
+                        foreach (var property in column.ColumnProperties)
                         {
-                            switch (col.ColumnName.ToUpper())
+                            switch (property.ToUpper())
                             {
                                 case "DATA_TYPE": //Tipo de datos
-                                    oColumn.DataType = row[col].ToString();
+                                    column.DataType = row[property].ToString();
                                     break;
 
                                 case "CHARACTER_MAXIMUM_LENGTH": //Longitud del campo
-                                    oColumn.FieldLenght = (row[col].ToString() == "")
+                                    column.FieldLenght = (row[property].ToString() == "")
                                         ? 0
-                                        : int.Parse(row[col].ToString());
+                                        : int.Parse(row[property].ToString());
                                     break;
 
                                 case "IS_NULLABLE": //Permite valores nulos
-                                    oColumn.IsNull = (row[col].ToString() == "YES");
+                                    column.IsNull = (row[property].ToString() == "YES");
                                     break;
 
                                 case "COLUMN_DEFAULT": //Valor por defecto
-                                    oColumn.DefaultData = (row[col].ToString() == "") ? "Null" : row[col].ToString();
+                                    column.DefaultData = (row[property].ToString() == "") ? "Null" : row[property].ToString();
                                     break;
                                 case "COLUMN_NAME": //Nombre del campo
-                                    oColumn.NameColumn = row[col].ToString();
+                                    column.NameColumn = row[property].ToString();
                                     break;
-                            }
+                            }                           
                         }
-                        table.ColColums.Add(oColumn);
+                        table.ColColums.Add(column);
                     }
+
+                    #region [not working, obsolete]
+                    //using (var oColumn = new Column())
+                    //{
+                    //    //recorre cada propiedad del campo 
+                    //    foreach (DataColumn col in dtTable.Columns)
+                    //    {
+                    //        switch (col.ColumnName.ToUpper())
+                    //        {
+                    //            case "DATA_TYPE": //Tipo de datos
+                    //                oColumn.DataType = row[col].ToString();
+                    //                break;
+
+                    //            case "CHARACTER_MAXIMUM_LENGTH": //Longitud del campo
+                    //                oColumn.FieldLenght = (row[col].ToString() == "")
+                    //                    ? 0
+                    //                    : int.Parse(row[col].ToString());
+                    //                break;
+
+                    //            case "IS_NULLABLE": //Permite valores nulos
+                    //                oColumn.IsNull = (row[col].ToString() == "YES");
+                    //                break;
+
+                    //            case "COLUMN_DEFAULT": //Valor por defecto
+                    //                oColumn.DefaultData = (row[col].ToString() == "") ? "Null" : row[col].ToString();
+                    //                break;
+                    //            case "COLUMN_NAME": //Nombre del campo
+                    //                oColumn.NameColumn = row[col].ToString();
+                    //                break;
+                    //        }
+                    //    }
+                    //    table.ColColums.Add(oColumn);
+                    //}
+                    #endregion
+                    
                 }
                 LoadPrimaryKey(table);
             }
